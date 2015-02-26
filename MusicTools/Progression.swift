@@ -2,7 +2,7 @@
 class Progression {
     //return offset of chord root for various progressions
     class func blues12Bar() -> [Int] {
-        return [0, 0, 0, 0, 5, 5, 0, 0, 7, 5, 0, 0]
+        return [0, 0, 0, 0, 5, 5, 0, 0, 7, 7, 5, 5, 0, 0]
     }
     class func circleProgression() -> [Int] {
         return [0, 5, 11, 4, 9, 2, 7, 0]

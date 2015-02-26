@@ -2,13 +2,17 @@
 import UIKit
 
 class IdentifyChordChanges: UIViewController {
-    var sampler = MIDISampler()
+    var sampler = MIDISampler.sharedInstance
     var runningStaff : Staff?
+    
+    @IBOutlet weak var switchInversions: UISwitch!
+    
+    @IBOutlet weak var sliderTempo: UISlider!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("identify view loaded____")
-        // Do any additional setup after loading the view, typically from a nib.
+        self.sliderTempo.minimumValue = 0.3
+        self.sliderTempo.maximumValue = 1.0
     }
     
     override func didReceiveMemoryWarning() {
@@ -21,9 +25,20 @@ class IdentifyChordChanges: UIViewController {
             self.runningStaff!.forceStop()
         }
         self.runningStaff = Staff()
-        //setTempo()
-        runningStaff!.setTempo(0.5)
+        setTempo()
+        //runningStaff!.setTempo(0.5)
         return runningStaff!
+    }
+    
+    func setTempo() {
+        if runningStaff != nil {
+            var tempo = self.sliderTempo.maximumValue - self.sliderTempo.value
+            runningStaff!.setTempo(Double(tempo))
+        }
+    }
+    
+    @IBAction func sliderTempoChanged(sender: AnyObject) {
+        self.setTempo()
     }
     
     @IBAction func btnStopClicked(sender: AnyObject) {
@@ -31,6 +46,7 @@ class IdentifyChordChanges: UIViewController {
             self.runningStaff!.forceStop()
             self.runningStaff = nil
         }
+        sampler.loadInstruments() //resets all sounds ..
     }
     
     @IBAction func btnPlayClicked(sender: AnyObject) {
@@ -61,9 +77,11 @@ class IdentifyChordChanges: UIViewController {
         //return
         var staff = self.getStaff()
         var inst1 = Instrument(sam: self.sampler.sampler0)
-        //var inst2 = Instrument(sam: self.sampler.sampler1)
+        var inst2 = Instrument(sam: self.sampler.sampler1)
         let voice1 : Voice = Voice(instr: inst1)
+        let voice2 : Voice = Voice(instr: inst2)
         staff.addVoice(voice1)
+        staff.addVoice(voice2)
         let base : Int = 64 - 12
         
         for tonic in 0...5 {
@@ -73,17 +91,21 @@ class IdentifyChordChanges: UIViewController {
                 var chordType = Scale.chordTypeAtPosition(chordIndex)
                 //println("base \(base) index \(chordIndex) type \(chordType)")
                 var chord : Chord = Chord(root: root, type: chordType)
-                /*if self.switchVoiceLeading.on {
+                if self.switchInversions.on {
                     if lastChord != nil {
                         chord = Chord.voiceLead(lastChord!, chord2: chord)
                     }
-                }*/
+                }
                 //var chordNotes : [Sound] = chord.blockBass()
+                voice1.add(Rest())
+                voice2.add(Note(noteValue: root - 12))
                 voice1.add(chord)
+                voice2.add(Rest())
                 lastChord = chord
             }
             for i in 0...3 {
-                voice1.add(Rest(duration: 1.0))
+                voice1.add(Rest())
+                voice2.add(Rest())
             }
         }
         staff.play()

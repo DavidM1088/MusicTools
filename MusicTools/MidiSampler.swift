@@ -14,10 +14,18 @@ class MIDISampler : NSObject {
     let gmMarimba:UInt8 = 12
     let gmHarpsichord:UInt8 = 6
     let gmGrand:UInt8 = 24
+    var instance : MIDISampler?
     
     override init() {
         super.init()
         initAudioEngine()
+    }
+    
+    class var sharedInstance: MIDISampler {
+        struct Singleton {
+            static let instance = MIDISampler()
+        }
+        return Singleton.instance
     }
     
     func initAudioEngine () {
@@ -49,13 +57,15 @@ class MIDISampler : NSObject {
                 println("error \(e.localizedDescription)")
             }
         }
-        // cello=42 marimba=12, piano=0
-        loadInstr(0, instr: 12)
-        if mixerOn == 1 {
-            loadInstr(1, instr: 42)
-        }
+        self.loadInstruments()
     }
     
+    func loadInstruments() {
+        // cello=42 marimba=12, piano=0, 35=bass
+        loadInstr(0, instr: 12)
+        loadInstr(1, instr: 35)
+    }
+
     func loadInstr(samp:Int, instr:Int) {
         var error:NSError?
         if samp == 0 {

@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  MusicTools
-//
-//  Created by David on 2/25/15.
-//  Copyright (c) 2015 David. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
@@ -16,6 +8,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        //let  tabBarController : UITabBarController = self.window.rootViewController//  (UITabBarController *)self.window.rootViewController;
+
         return true
     }
 
