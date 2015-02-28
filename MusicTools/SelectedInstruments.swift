@@ -2,7 +2,7 @@ import Foundation
 
 class MidiInstrument {
     var name : String
-    var id : Int
+    var id : Int // midi Identifier
     init (name: String, id: Int) {
         self.name = name
         self.id = id
@@ -16,7 +16,7 @@ class SelectedInstruments {
     
     init() {
         self.instruments = []
-        instruments.append(MidiInstrument(name: "Piano", id: 0))
+        instruments.append(MidiInstrument(name: "Piano", id: 1))
         instruments.append(MidiInstrument(name: "Marimba", id: 12))
         instruments.append(MidiInstrument(name: "Nylon Guitar", id: 24))
         instruments.append(MidiInstrument(name: "Electric Guitar", id: 30))
@@ -30,7 +30,7 @@ class SelectedInstruments {
         instruments.append(MidiInstrument(name: "Clarinet", id: 72))
         instruments.append(MidiInstrument(name: "Flute", id:73))
         instruments.append(MidiInstrument(name: "Synth Strings", id: 50))
-        selected = 0
+        selected = 13
     }
     
     class var sharedInstance: SelectedInstruments {
@@ -40,13 +40,8 @@ class SelectedInstruments {
         return Singleton.instance
     }
     
-    func selectedCount() -> Int {
-        var total : Int = 0
-        /*for sel in self.selected {
-            if sel {
-                total += 1
-            }
-        }*/
-        return total
+    class func getSelectedInstrument() -> Int {
+        return sharedInstance.instruments[sharedInstance.selected].id
     }
+
 }

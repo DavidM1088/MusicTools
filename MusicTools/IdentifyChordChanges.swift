@@ -2,7 +2,7 @@
 import UIKit
 
 class IdentifyChordChanges: UIViewController {
-    var sampler = MIDISampler.sharedInstance
+    var audioEngine = AudioEngine.sharedInstance
     var runningStaff : Staff?
     
     @IBOutlet weak var switchInversions: UISwitch!
@@ -52,12 +52,12 @@ class IdentifyChordChanges: UIViewController {
             self.runningStaff!.forceStop()
             self.runningStaff = nil
         }
-        sampler.loadInstruments() //resets all sounds ..
+        //sampler.loadInstruments() //resets all sounds ..
     }
     
     @IBAction func btnPlayClicked(sender: AnyObject) {
         var staff = self.getStaff()
-        var inst1 = Instrument(sam: self.sampler.sampler0)
+        var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
         let voice1 : Voice = Voice(instr: inst1)
         staff.addVoice(voice1)
         //let voice2 : Voice = Voice(instr: inst1)
@@ -82,8 +82,8 @@ class IdentifyChordChanges: UIViewController {
         //Chord.unitTest()
         //return
         var staff = self.getStaff()
-        var inst1 = Instrument(sam: self.sampler.sampler0)
-        var inst2 = Instrument(sam: self.sampler.sampler1)
+        var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
+        var inst2 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
         let voice1 : Voice = Voice(instr: inst1)
         let voice2 : Voice = Voice(instr: inst2)
         staff.addVoice(voice1)

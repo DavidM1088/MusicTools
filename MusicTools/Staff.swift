@@ -61,14 +61,12 @@ class Staff {
     
     init () {
         id = staffNo
-        println("----- staff init \(id)")
         staffNo += 1
         stopForced = false
     }
     
     deinit {
-        println("--------- staff deinit \(id)")
-        //self.timer.invalidate()
+        Logger.log("Staff deinit")
     }
     
     func setTempo(tempo : Double) {

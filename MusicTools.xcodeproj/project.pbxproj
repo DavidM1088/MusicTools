@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		630C6D881A9EDC9100EC5669 /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C6D871A9EDC9100EC5669 /* Instrument.swift */; };
-		630C6D8A1A9EE21500EC5669 /* MidiSampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C6D891A9EE21500EC5669 /* MidiSampler.swift */; };
+		630C6D8A1A9EE21500EC5669 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C6D891A9EE21500EC5669 /* AudioEngine.swift */; };
 		630C6D8C1A9EE35300EC5669 /* IdentifyChordChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C6D8B1A9EE35300EC5669 /* IdentifyChordChanges.swift */; };
 		630C6D8E1A9EE49200EC5669 /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C6D8D1A9EE49200EC5669 /* Scale.swift */; };
 		630C6D901A9EE5B500EC5669 /* GeneralUser_GS_MuseScore.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 630C6D8F1A9EE5B500EC5669 /* GeneralUser_GS_MuseScore.sf2 */; };
@@ -17,6 +17,7 @@
 		631E42541AA0F622007EF87D /* SelectedInstruments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E42531AA0F622007EF87D /* SelectedInstruments.swift */; };
 		631E42561AA14377007EF87D /* SelectedIntervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E42551AA14377007EF87D /* SelectedIntervals.swift */; };
 		631E42581AA14533007EF87D /* Selectintervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E42571AA14533007EF87D /* Selectintervals.swift */; };
+		631E425B1AA16B01007EF87D /* play_sound.png in Resources */ = {isa = PBXBuildFile; fileRef = 631E425A1AA16B01007EF87D /* play_sound.png */; };
 		633667E51A9F9F99004D4104 /* IdentifyIntervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633667E41A9F9F99004D4104 /* IdentifyIntervals.swift */; };
 		633667E71A9FA8F9004D4104 /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 633667E61A9FA8F9004D4104 /* Notes.rtf */; };
 		633667E91A9FAB6C004D4104 /* IdentifyIntervalsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633667E81A9FAB6C004D4104 /* IdentifyIntervalsSettings.swift */; };
@@ -29,6 +30,7 @@
 		6340DDD71A9ED273002C0611 /* MusicToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6340DDD61A9ED273002C0611 /* MusicToolsTests.swift */; };
 		6340DDE31A9ED437002C0611 /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6340DDE21A9ED437002C0611 /* Chord.swift */; };
 		6340DDE71A9ED468002C0611 /* Staff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6340DDE61A9ED468002C0611 /* Staff.swift */; };
+		635C220B1AA18BA200FFE9C3 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C220A1AA18BA200FFE9C3 /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +45,7 @@
 
 /* Begin PBXFileReference section */
 		630C6D871A9EDC9100EC5669 /* Instrument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
-		630C6D891A9EE21500EC5669 /* MidiSampler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiSampler.swift; sourceTree = "<group>"; };
+		630C6D891A9EE21500EC5669 /* AudioEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
 		630C6D8B1A9EE35300EC5669 /* IdentifyChordChanges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifyChordChanges.swift; sourceTree = "<group>"; };
 		630C6D8D1A9EE49200EC5669 /* Scale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
 		630C6D8F1A9EE5B500EC5669 /* GeneralUser_GS_MuseScore.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = GeneralUser_GS_MuseScore.sf2; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 		631E42531AA0F622007EF87D /* SelectedInstruments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedInstruments.swift; sourceTree = "<group>"; };
 		631E42551AA14377007EF87D /* SelectedIntervals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedIntervals.swift; sourceTree = "<group>"; };
 		631E42571AA14533007EF87D /* Selectintervals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selectintervals.swift; sourceTree = "<group>"; };
+		631E425A1AA16B01007EF87D /* play_sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_sound.png; sourceTree = "<group>"; };
 		633667E41A9F9F99004D4104 /* IdentifyIntervals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifyIntervals.swift; sourceTree = "<group>"; };
 		633667E61A9FA8F9004D4104 /* Notes.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Notes.rtf; sourceTree = SOURCE_ROOT; };
 		633667E81A9FAB6C004D4104 /* IdentifyIntervalsSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifyIntervalsSettings.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		6340DDD61A9ED273002C0611 /* MusicToolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicToolsTests.swift; sourceTree = "<group>"; };
 		6340DDE21A9ED437002C0611 /* Chord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
 		6340DDE61A9ED468002C0611 /* Staff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Staff.swift; sourceTree = "<group>"; };
+		635C220A1AA18BA200FFE9C3 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		631E42591AA16AEF007EF87D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				631E425A1AA16B01007EF87D /* play_sound.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		633667EC1AA01A71004D4104 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,21 +134,23 @@
 		6340DDBB1A9ED272002C0611 /* MusicTools */ = {
 			isa = PBXGroup;
 			children = (
-				633667EC1AA01A71004D4104 /* Model */,
 				633667E61A9FA8F9004D4104 /* Notes.rtf */,
 				6340DDBE1A9ED273002C0611 /* AppDelegate.swift */,
+				635C220A1AA18BA200FFE9C3 /* Logger.swift */,
+				630C6D891A9EE21500EC5669 /* AudioEngine.swift */,
 				630C6D8B1A9EE35300EC5669 /* IdentifyChordChanges.swift */,
 				633667E41A9F9F99004D4104 /* IdentifyIntervals.swift */,
 				633667E81A9FAB6C004D4104 /* IdentifyIntervalsSettings.swift */,
-				633667EA1A9FE785004D4104 /* SelectTonics.swift */,
-				631E42571AA14533007EF87D /* Selectintervals.swift */,
-				631E42511AA0EF60007EF87D /* SelectInstrument.swift */,
 				630C6D871A9EDC9100EC5669 /* Instrument.swift */,
-				630C6D891A9EE21500EC5669 /* MidiSampler.swift */,
+				631E42511AA0EF60007EF87D /* SelectInstrument.swift */,
+				631E42571AA14533007EF87D /* Selectintervals.swift */,
+				633667EA1A9FE785004D4104 /* SelectTonics.swift */,
 				6340DDE61A9ED468002C0611 /* Staff.swift */,
 				6340DDC71A9ED273002C0611 /* Images.xcassets */,
+				631E42591AA16AEF007EF87D /* Images */,
 				6340DDC91A9ED273002C0611 /* LaunchScreen.xib */,
 				6340DDC41A9ED273002C0611 /* Main.storyboard */,
+				633667EC1AA01A71004D4104 /* Model */,
 				6340DDBC1A9ED273002C0611 /* Supporting Files */,
 			);
 			path = MusicTools;
@@ -251,6 +265,7 @@
 				630C6D901A9EE5B500EC5669 /* GeneralUser_GS_MuseScore.sf2 in Resources */,
 				6340DDC61A9ED273002C0611 /* Main.storyboard in Resources */,
 				6340DDCB1A9ED273002C0611 /* LaunchScreen.xib in Resources */,
+				631E425B1AA16B01007EF87D /* play_sound.png in Resources */,
 				6340DDC81A9ED273002C0611 /* Images.xcassets in Resources */,
 				633667E71A9FA8F9004D4104 /* Notes.rtf in Resources */,
 			);
@@ -278,8 +293,9 @@
 				630C6D921A9EE95E00EC5669 /* Progression.swift in Sources */,
 				6340DDE31A9ED437002C0611 /* Chord.swift in Sources */,
 				630C6D8C1A9EE35300EC5669 /* IdentifyChordChanges.swift in Sources */,
+				635C220B1AA18BA200FFE9C3 /* Logger.swift in Sources */,
 				631E42581AA14533007EF87D /* Selectintervals.swift in Sources */,
-				630C6D8A1A9EE21500EC5669 /* MidiSampler.swift in Sources */,
+				630C6D8A1A9EE21500EC5669 /* AudioEngine.swift in Sources */,
 				6340DDBF1A9ED273002C0611 /* AppDelegate.swift in Sources */,
 				6340DDE71A9ED468002C0611 /* Staff.swift in Sources */,
 				631E42521AA0EF60007EF87D /* SelectInstrument.swift in Sources */,

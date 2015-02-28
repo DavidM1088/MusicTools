@@ -2,10 +2,16 @@ import AVFoundation
 import AudioUnit
 
 class Instrument {
-    var sampler: AVAudioUnitSampler
+    //var sampler: AVAudioUnitSampler
+    let sampler = AVAudioUnitSampler()
     
-    init(sam: AVAudioUnitSampler) {
-        self.sampler = sam
+    init(midiPresetId : Int) {
+        AudioEngine.sharedInstance.attachSampler(self.sampler, midiInstrument: midiPresetId)
+    }
+    
+    deinit  {
+        AudioEngine.sharedInstance.detachSampler(self.sampler)
+        Logger.log("instument deattached")
     }
     
     func playNote(note:Int) {

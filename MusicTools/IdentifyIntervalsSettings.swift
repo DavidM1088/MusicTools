@@ -21,9 +21,10 @@ class IdentifyIntervalsSettings: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cellType : String?
         switch (indexPath.row) {
+            case 0: cellType = "intervalsSettingsRow"
             case 1: cellType = "rootsSettingsRow"
             case 2: cellType = "instrumentsSettingsRow"
-            default : cellType = "rootsSettingsRow"
+            default : cellType = nil
         }
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier(cellType!) as UITableViewCell
         cell.textLabel?.text = self.items[indexPath.row]

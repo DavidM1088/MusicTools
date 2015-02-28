@@ -1,21 +1,21 @@
 import UIKit
 
 class SelectIntervals: UITableViewController {
-    var selectedTonics = SelectedTonics.sharedInstance
+    var selectedIntervals = SelectedIntervals.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("keys settings loaded")
+        println("interval settings loaded")
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.selectedTonics.selectedNotes.count
+        return self.selectedIntervals.intervals.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("keyId") as UITableViewCell
-        cell.textLabel?.text = self.selectedTonics.selectedNoteNames[indexPath.row]
-        if self.selectedTonics.selected[indexPath.row] {
+        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cellTypeId") as UITableViewCell
+        cell.textLabel?.text = self.selectedIntervals.intervals[indexPath.row].name
+        if self.selectedIntervals.selected[indexPath.row] {
             cell.accessoryType = .Checkmark
         }
         else {
@@ -26,15 +26,14 @@ class SelectIntervals: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //println("keyselected..\(self.items[indexPath.row]) ")
         var cell : UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPath)!
         if cell.accessoryType == .None {
             cell.accessoryType = .Checkmark
-            self.selectedTonics.selected[indexPath.row] = true
+            self.selectedIntervals.selected[indexPath.row] = true
         }
         else {
             cell.accessoryType = .None
-            self.selectedTonics.selected[indexPath.row] = false
+            self.selectedIntervals.selected[indexPath.row] = false
         }
         
     }
