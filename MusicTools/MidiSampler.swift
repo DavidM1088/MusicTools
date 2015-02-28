@@ -62,11 +62,11 @@ class MIDISampler : NSObject {
     
     func loadInstruments() {
         // cello=42 marimba=12, piano=0, 35=bass
-        loadInstr(0, instr: 12)
-        loadInstr(1, instr: 35)
+        loadInstrument(0, instr: 12)
+        loadInstrument(1, instr: 35)
     }
 
-    func loadInstr(samp:Int, instr:Int) {
+    func loadInstrument(samp:Int, instr:Int) {
         var error:NSError?
         if samp == 0 {
             if !sampler0.loadSoundBankInstrumentAtURL(soundbank, program: UInt8(instr),
@@ -88,9 +88,9 @@ class MIDISampler : NSObject {
     func test() {
         //https://developer.apple.com/library/ios/technotes/tn2283/_index.html
         //cello= 42
-        loadInstr(0, instr: 0) //cello
+        loadInstrument(0, instr: 0) //cello
         //loadInstr(1, instr: 12) //marimba
-        loadInstr(1, instr: 0) //piano
+        loadInstrument(1, instr: 0) //piano
 
         self.sampler0.startNote(UInt8(64), withVelocity: 64, onChannel: 0)
         sleep(1)

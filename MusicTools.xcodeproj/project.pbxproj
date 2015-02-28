@@ -13,7 +13,15 @@
 		630C6D8E1A9EE49200EC5669 /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C6D8D1A9EE49200EC5669 /* Scale.swift */; };
 		630C6D901A9EE5B500EC5669 /* GeneralUser_GS_MuseScore.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 630C6D8F1A9EE5B500EC5669 /* GeneralUser_GS_MuseScore.sf2 */; };
 		630C6D921A9EE95E00EC5669 /* Progression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C6D911A9EE95E00EC5669 /* Progression.swift */; };
+		631E42521AA0EF60007EF87D /* SelectInstrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E42511AA0EF60007EF87D /* SelectInstrument.swift */; };
+		631E42541AA0F622007EF87D /* SelectedInstruments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E42531AA0F622007EF87D /* SelectedInstruments.swift */; };
+		631E42561AA14377007EF87D /* SelectedIntervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E42551AA14377007EF87D /* SelectedIntervals.swift */; };
+		631E42581AA14533007EF87D /* Selectintervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E42571AA14533007EF87D /* Selectintervals.swift */; };
 		633667E51A9F9F99004D4104 /* IdentifyIntervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633667E41A9F9F99004D4104 /* IdentifyIntervals.swift */; };
+		633667E71A9FA8F9004D4104 /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 633667E61A9FA8F9004D4104 /* Notes.rtf */; };
+		633667E91A9FAB6C004D4104 /* IdentifyIntervalsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633667E81A9FAB6C004D4104 /* IdentifyIntervalsSettings.swift */; };
+		633667EB1A9FE785004D4104 /* SelectTonics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633667EA1A9FE785004D4104 /* SelectTonics.swift */; };
+		633667EE1AA01B2A004D4104 /* SelectedTonics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633667ED1AA01B2A004D4104 /* SelectedTonics.swift */; };
 		6340DDBF1A9ED273002C0611 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6340DDBE1A9ED273002C0611 /* AppDelegate.swift */; };
 		6340DDC61A9ED273002C0611 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6340DDC41A9ED273002C0611 /* Main.storyboard */; };
 		6340DDC81A9ED273002C0611 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6340DDC71A9ED273002C0611 /* Images.xcassets */; };
@@ -40,7 +48,15 @@
 		630C6D8D1A9EE49200EC5669 /* Scale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
 		630C6D8F1A9EE5B500EC5669 /* GeneralUser_GS_MuseScore.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = GeneralUser_GS_MuseScore.sf2; sourceTree = "<group>"; };
 		630C6D911A9EE95E00EC5669 /* Progression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Progression.swift; sourceTree = "<group>"; };
+		631E42511AA0EF60007EF87D /* SelectInstrument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectInstrument.swift; sourceTree = "<group>"; };
+		631E42531AA0F622007EF87D /* SelectedInstruments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedInstruments.swift; sourceTree = "<group>"; };
+		631E42551AA14377007EF87D /* SelectedIntervals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedIntervals.swift; sourceTree = "<group>"; };
+		631E42571AA14533007EF87D /* Selectintervals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selectintervals.swift; sourceTree = "<group>"; };
 		633667E41A9F9F99004D4104 /* IdentifyIntervals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifyIntervals.swift; sourceTree = "<group>"; };
+		633667E61A9FA8F9004D4104 /* Notes.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Notes.rtf; sourceTree = SOURCE_ROOT; };
+		633667E81A9FAB6C004D4104 /* IdentifyIntervalsSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifyIntervalsSettings.swift; sourceTree = "<group>"; };
+		633667EA1A9FE785004D4104 /* SelectTonics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTonics.swift; sourceTree = "<group>"; };
+		633667ED1AA01B2A004D4104 /* SelectedTonics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedTonics.swift; sourceTree = "<group>"; };
 		6340DDB91A9ED272002C0611 /* MusicTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6340DDBD1A9ED273002C0611 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6340DDBE1A9ED273002C0611 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +88,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		633667EC1AA01A71004D4104 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				630C6D911A9EE95E00EC5669 /* Progression.swift */,
+				630C6D8D1A9EE49200EC5669 /* Scale.swift */,
+				6340DDE21A9ED437002C0611 /* Chord.swift */,
+				633667ED1AA01B2A004D4104 /* SelectedTonics.swift */,
+				631E42551AA14377007EF87D /* SelectedIntervals.swift */,
+				631E42531AA0F622007EF87D /* SelectedInstruments.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		6340DDB01A9ED272002C0611 = {
 			isa = PBXGroup;
 			children = (
@@ -93,14 +122,17 @@
 		6340DDBB1A9ED272002C0611 /* MusicTools */ = {
 			isa = PBXGroup;
 			children = (
+				633667EC1AA01A71004D4104 /* Model */,
+				633667E61A9FA8F9004D4104 /* Notes.rtf */,
 				6340DDBE1A9ED273002C0611 /* AppDelegate.swift */,
-				6340DDE21A9ED437002C0611 /* Chord.swift */,
 				630C6D8B1A9EE35300EC5669 /* IdentifyChordChanges.swift */,
 				633667E41A9F9F99004D4104 /* IdentifyIntervals.swift */,
+				633667E81A9FAB6C004D4104 /* IdentifyIntervalsSettings.swift */,
+				633667EA1A9FE785004D4104 /* SelectTonics.swift */,
+				631E42571AA14533007EF87D /* Selectintervals.swift */,
+				631E42511AA0EF60007EF87D /* SelectInstrument.swift */,
 				630C6D871A9EDC9100EC5669 /* Instrument.swift */,
 				630C6D891A9EE21500EC5669 /* MidiSampler.swift */,
-				630C6D911A9EE95E00EC5669 /* Progression.swift */,
-				630C6D8D1A9EE49200EC5669 /* Scale.swift */,
 				6340DDE61A9ED468002C0611 /* Staff.swift */,
 				6340DDC71A9ED273002C0611 /* Images.xcassets */,
 				6340DDC91A9ED273002C0611 /* LaunchScreen.xib */,
@@ -220,6 +252,7 @@
 				6340DDC61A9ED273002C0611 /* Main.storyboard in Resources */,
 				6340DDCB1A9ED273002C0611 /* LaunchScreen.xib in Resources */,
 				6340DDC81A9ED273002C0611 /* Images.xcassets in Resources */,
+				633667E71A9FA8F9004D4104 /* Notes.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,13 +270,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				633667EE1AA01B2A004D4104 /* SelectedTonics.swift in Sources */,
+				633667EB1A9FE785004D4104 /* SelectTonics.swift in Sources */,
 				633667E51A9F9F99004D4104 /* IdentifyIntervals.swift in Sources */,
+				631E42561AA14377007EF87D /* SelectedIntervals.swift in Sources */,
+				631E42541AA0F622007EF87D /* SelectedInstruments.swift in Sources */,
 				630C6D921A9EE95E00EC5669 /* Progression.swift in Sources */,
 				6340DDE31A9ED437002C0611 /* Chord.swift in Sources */,
 				630C6D8C1A9EE35300EC5669 /* IdentifyChordChanges.swift in Sources */,
+				631E42581AA14533007EF87D /* Selectintervals.swift in Sources */,
 				630C6D8A1A9EE21500EC5669 /* MidiSampler.swift in Sources */,
 				6340DDBF1A9ED273002C0611 /* AppDelegate.swift in Sources */,
 				6340DDE71A9ED468002C0611 /* Staff.swift in Sources */,
+				631E42521AA0EF60007EF87D /* SelectInstrument.swift in Sources */,
+				633667E91A9FAB6C004D4104 /* IdentifyIntervalsSettings.swift in Sources */,
 				630C6D8E1A9EE49200EC5669 /* Scale.swift in Sources */,
 				630C6D881A9EDC9100EC5669 /* Instrument.swift in Sources */,
 			);

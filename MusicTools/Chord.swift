@@ -43,7 +43,7 @@ class Note : Duration {
         super.init(duration: note.duration)
     }
     
-    class func noteName(note : Note) -> String {
+    class func noteName(note : Note, withOctave : Bool) -> String {
         var noteValue = note.noteValue % 12
         var octave = note.noteValue / 12
         var noteName=""
@@ -62,7 +62,12 @@ class Note : Duration {
             case 11: noteName = "B"
             default : noteName = ""
         }
-        return ("\(noteName)(\(octave))")
+        if withOctave {
+            return ("\(noteName)(\(octave))")
+        }
+        else {
+            return ("\(noteName)")
+        }
     }
 }
 
@@ -157,7 +162,7 @@ class Chord  : StaffObject {
     func toString() -> String {
         var res : String = "chord:"
         for note in self.notes {
-            res = res + "  \(Note.noteName(note)) \(note.noteValue), "
+            res = res + "  \(Note.noteName(note, withOctave: true)) \(note.noteValue), "
         }
         return res
     }
