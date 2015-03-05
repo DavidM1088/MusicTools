@@ -17,6 +17,9 @@ class IdentifyIntervals: UIViewController {
     
     @IBOutlet weak var lblIntervalAnswer: UILabel!
     
+
+    @IBOutlet weak var uiViewStaff: StaffView!
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -69,15 +72,25 @@ class IdentifyIntervals: UIViewController {
     }
     
     func playInterval(note1 : Note, note2 :Note) {
-        Logger.log("--start of play")
         var staff = self.getStaff()
         var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
-        let voice1 : Voice = Voice(instr: inst1)
-        staff.addVoice(voice1)
-        voice1.add(note1)
-        voice1.add(note2)
+        let voice : Voice = Voice(instr: inst1)
+        staff.addVoice(voice)
+        let tempo = self.sliderSpeed.maximumValue - self.sliderSpeed.value
+        if tempo == 0 {
+            let chord = Chord(noteValues: [note1.noteValue, note2.noteValue])
+            voice.add(chord)
+            staff.setTempo(1)
+        }
+        else {
+            voice.add(note1)
+            voice.add(note2)
+        }
+        voice.add(Rest())
+
         staff.play()
-        Logger.log("--end of play")
+        self.uiViewStaff.setStaff(staff, staffMode: STAFF_SINGLE_STAFF)
+        self.uiViewStaff.setNeedsDisplay()
     }
 
     @IBAction func btnRepeatClicked(sender: AnyObject) {

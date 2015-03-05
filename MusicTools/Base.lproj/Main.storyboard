@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSV-qI-DgO">
-                                <rect key="frame" x="16" y="326" width="33" height="30"/>
+                                <rect key="frame" x="16" y="407" width="33" height="30"/>
                                 <state key="normal" title="Stop">
                                     <color key="titleColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -45,8 +45,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gA7-Nx-Kxk">
-                                <rect key="frame" x="16" y="286" width="82" height="30"/>
-                                <state key="normal" title="Progression">
+                                <rect key="frame" x="16" y="275" width="126" height="30"/>
+                                <state key="normal" title="Progression 12bar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -74,6 +74,33 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ox-lf-xyX">
+                                <rect key="frame" x="16" y="302" width="139" height="30"/>
+                                <state key="normal" title="Progression Circular">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnCircular:" destination="9pv-A4-QxB" eventType="touchUpInside" id="ga9-5Y-2I7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zP7-kQ-gdK">
+                                <rect key="frame" x="16" y="328" width="122" height="30"/>
+                                <state key="normal" title="Progression Bach">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnBach:" destination="9pv-A4-QxB" eventType="touchUpInside" id="TbD-zF-1Gh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9U-d0-Gu0">
+                                <rect key="frame" x="16" y="355" width="153" height="30"/>
+                                <state key="normal" title="Progression Pachelbel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnPachelbel:" destination="9pv-A4-QxB" eventType="touchUpInside" id="3Lh-uu-9Yu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -132,7 +159,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkH-pS-Rky">
-                                <rect key="frame" x="16" y="191" width="120" height="30"/>
+                                <rect key="frame" x="16" y="183" width="120" height="30"/>
                                 <state key="normal" title="Play Next Interval">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -140,8 +167,23 @@
                                     <action selector="btnPlayClicked:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="xeT-Uv-AVM"/>
                                 </connections>
                             </button>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="QYG-R1-XDV">
+                                <rect key="frame" x="139" y="106" width="94" height="29"/>
+                                <connections>
+                                    <action selector="stepperOctaveClicked:" destination="8rJ-Kc-sve" eventType="valueChanged" id="3Ph-Kp-s4i"/>
+                                </connections>
+                            </stepper>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Octave" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPl-Jh-Ee0">
+                                <rect key="frame" x="16" y="110" width="55" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="8lC-4Z-aCn">
+                                <rect key="frame" x="145" y="72" width="138" height="31"/>
+                            </slider>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pmL-Ww-Gti">
-                                <rect key="frame" x="16" y="160" width="104" height="30"/>
+                                <rect key="frame" x="16" y="151" width="104" height="30"/>
                                 <state key="normal" title="Repeat Interval">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -149,27 +191,16 @@
                                     <action selector="btnRepeatClicked:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="58U-D8-EHx"/>
                                 </connections>
                             </button>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="QYG-R1-XDV">
-                                <rect key="frame" x="139" y="110" width="94" height="29"/>
-                                <connections>
-                                    <action selector="stepperOctaveClicked:" destination="8rJ-Kc-sve" eventType="valueChanged" id="3Ph-Kp-s4i"/>
-                                </connections>
-                            </stepper>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Octave" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPl-Jh-Ee0">
-                                <rect key="frame" x="16" y="114" width="55" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aC4-5r-PIK">
-                                <rect key="frame" x="16" y="240" width="157" height="21"/>
+                                <rect key="frame" x="16" y="221" width="157" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="8lC-4Z-aCn">
-                                <rect key="frame" x="145" y="72" width="138" height="31"/>
-                            </slider>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZRr-cS-ExY" customClass="StaffView" customModule="MusicTools" customModuleProvider="target">
+                                <rect key="frame" x="16" y="250" width="300" height="300"/>
+                                <color key="backgroundColor" red="0.9450981021" green="0.84705889229999998" blue="0.66666668650000005" alpha="1" colorSpace="deviceRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -179,6 +210,7 @@
                         <outlet property="lblIntervalAnswer" destination="aC4-5r-PIK" id="l8X-p8-2tY"/>
                         <outlet property="sliderSpeed" destination="8lC-4Z-aCn" id="UjJ-BJ-0XC"/>
                         <outlet property="stepperOctave" destination="QYG-R1-XDV" id="LaW-Ye-ytZ"/>
+                        <outlet property="uiViewStaff" destination="ZRr-cS-ExY" id="1zb-Xe-6qX"/>
                         <segue destination="x65-WG-dbt" kind="show" identifier="segueToSettings" id="cew-ZF-W5H"/>
                     </connections>
                 </viewController>
@@ -199,14 +231,6 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HGU-Ec-EfL" id="gDI-Ax-gim">
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="roots" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rV-AP-dcM">
-                                            <rect key="frame" x="138" y="14" width="40" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="BTg-G4-sDZ" kind="show" id="nHC-Te-Ra8"/>
@@ -216,14 +240,6 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gN2-Tc-6uS" id="SEC-Oh-OMd">
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="instr" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2v-3o-lTj">
-                                            <rect key="frame" x="138" y="14" width="34" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="2aw-LK-IJZ" kind="show" id="JNS-qz-LPR"/>
@@ -233,14 +249,6 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WdI-Iz-Czf" id="8ck-RN-z2Q">
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="interval" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eU-Lc-S1h">
-                                            <rect key="frame" x="138" y="14" width="56" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="7IQ-Vm-UMH" kind="show" id="nrE-jn-eIJ"/>
@@ -270,6 +278,17 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sQ9-G0-SHF" id="LBd-vs-AFL">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Zy-sG-yRQ">
+                                            <rect key="frame" x="285" y="5" width="30" height="30"/>
+                                            <state key="normal" backgroundImage="play_sound.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="btnPlayClciked:" destination="7IQ-Vm-UMH" eventType="touchUpInside" id="uUh-XA-jbU"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>

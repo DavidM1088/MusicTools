@@ -8,7 +8,7 @@ class SelectedTonics {
     
     init() {
         for note in self.selectedNotes {
-            selectedNoteNames.append(Note.noteName(Note(noteValue: note), withOctave: false))
+            selectedNoteNames.append(Note.noteDescription(Note(noteValue: note), withOctave: false))
             selected.append(false)
         }
         selected[0] = true

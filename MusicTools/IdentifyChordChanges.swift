@@ -116,12 +116,21 @@ class IdentifyChordChanges: UIViewController {
         }
         staff.play()
     }
-
     
-    @IBAction func btnProgressionClicked(sender: AnyObject) {
-        var progression : [Int]
+    @IBAction func btnBach(sender: AnyObject) {
+        self.chordProgression(Progression.bach())
+    }
 
-        progression = Progression.blues12Bar()
+    @IBAction func btnPachelbel(sender: AnyObject) {
+        self.chordProgression(Progression.pachelbelCanon())
+    }
+    
+    @IBAction func btnCircular(sender: AnyObject) {
+        self.chordProgression(Progression.circleProgression())
+    }
+
+    @IBAction func btnProgressionClicked(sender: AnyObject) {
+        let progression = Progression.blues12Bar()
         self.chordProgression(progression)
     }
 }

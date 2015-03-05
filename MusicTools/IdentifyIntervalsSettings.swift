@@ -1,7 +1,7 @@
 import UIKit
 
 class IdentifyIntervalsSettings: UITableViewController {
-    var items: [String] = ["Intervals", "Root Notes", "Instruments"]
+    var items: [String] = ["Intervals", "Interval Root Notes", "Instruments"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

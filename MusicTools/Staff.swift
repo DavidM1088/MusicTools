@@ -1,4 +1,5 @@
 import AVFoundation
+import UIKit
 
 class Voice {
     var contents = [StaffObject]()
@@ -83,7 +84,7 @@ class Staff {
     }
     
     @objc func beat() {
-        //println("beat \(beatNum)")
+        //println("====> Staff beat before play \(beatNum)")
         var done : Bool = true
         for voice in voices {
             if !voice.isFinishedPlaying() {
@@ -96,7 +97,9 @@ class Staff {
             //self.timer.invalidate()
         }
         else {
+            //println("====> Staff beat start timer \(beatNum)")
             self.timer = NSTimer.scheduledTimerWithTimeInterval(self.tempo, target: self, selector: Selector("beat"), userInfo: nil, repeats: false)
+            //println("====> Staff beat after timer \(beatNum)")
         }
     }
     
@@ -107,4 +110,7 @@ class Staff {
         }
         self.beat()
     }
+    
+
+    
 }

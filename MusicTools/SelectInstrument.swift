@@ -14,6 +14,7 @@ class SelectInstrument: UITableViewController {
             self.staff!.forceStop()
         }
         self.staff = Staff()
+        staff?.setTempo(1)
         return staff!
     }
     
@@ -26,7 +27,7 @@ class SelectInstrument: UITableViewController {
         staff.addVoice(voice1)
         voice1.add(Note(noteValue: 64))
         voice1.add(Rest())
-        staff.play() broken...        //sleep(2)
+        staff.play()
     }
 
 
@@ -37,10 +38,11 @@ class SelectInstrument: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("instrument") as UITableViewCell
         cell.textLabel?.text = self.instruments.instruments[indexPath.row].name
-        //btnPlay.setTitle(self.instruments.instruments[indexPath.row].name, forState: UIControlState.Normal)
+
         var btnPlay : UIButton = cell.viewWithTag(10) as UIButton!
         var midiId = "\(self.instruments.instruments[indexPath.row].id)"
         btnPlay.setTitle(midiId, forState: UIControlState.Selected)
+
         if indexPath.row == self.instruments.selected {
             cell.accessoryType = .Checkmark
         }

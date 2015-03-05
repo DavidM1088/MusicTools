@@ -7,6 +7,8 @@ let CHORD_DIMINISHED=2
 let DURATION_QTR : Float = 0.25
 let NOTE_WHOLE : Float = 1.0
 
+let ACCIDENTAL_SHARP = 1
+
 //any object that can be placed on a staff
 class StaffObject {
     
@@ -26,50 +28,6 @@ class Rest : Duration {
     }
 }
 
-class Note : Duration {
-    var noteValue : Int
-
-    init(noteValue : Int) {
-        self.noteValue = noteValue
-        super.init(duration: DURATION_QTR)
-    }
-    init(noteValue : Int, duration : Float) {
-        self.noteValue = noteValue
-        super.init(duration: duration)
-    }
-    
-    init(note : Note) {
-        self.noteValue = note.noteValue
-        super.init(duration: note.duration)
-    }
-    
-    class func noteName(note : Note, withOctave : Bool) -> String {
-        var noteValue = note.noteValue % 12
-        var octave = note.noteValue / 12
-        var noteName=""
-        switch (noteValue) {
-            case 0: noteName = "C"
-            case 1: noteName = "C#"
-            case 2: noteName = "D"
-            case 3: noteName = "Eb"
-            case 4: noteName = "E"
-            case 5: noteName = "F"
-            case 6: noteName = "F#"
-            case 7: noteName = "G"
-            case 8: noteName = "Ab"
-            case 9: noteName = "A"
-            case 10: noteName = "Bb"
-            case 11: noteName = "B"
-            default : noteName = ""
-        }
-        if withOctave {
-            return ("\(noteName)(\(octave))")
-        }
-        else {
-            return ("\(noteName)")
-        }
-    }
-}
 
 class Chord  : StaffObject {
     var notes : [Note] = []
@@ -162,7 +120,7 @@ class Chord  : StaffObject {
     func toString() -> String {
         var res : String = "chord:"
         for note in self.notes {
-            res = res + "  \(Note.noteName(note, withOctave: true)) \(note.noteValue), "
+            res = res + "  \(Note.noteDescription(note, withOctave: true)) \(note.noteValue), "
         }
         return res
     }

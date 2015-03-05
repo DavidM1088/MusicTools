@@ -32,7 +32,7 @@ class SelectedIntervals {
         for index in 0...self.intervals.count {
             selected.append(false)
         }
-        selected[0] = true
+        selected[7] = true
     }
     
     class var sharedInstance: SelectedIntervals {
