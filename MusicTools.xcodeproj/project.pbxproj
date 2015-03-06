@@ -35,6 +35,7 @@
 		635C220F1AA58B5700FFE9C3 /* Piano.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C220E1AA58B5700FFE9C3 /* Piano.swift */; };
 		635C22111AA68B2700FFE9C3 /* KeySignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C22101AA68B2700FFE9C3 /* KeySignature.swift */; };
 		6389D6F91AA7F45200E81FB7 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6389D6F81AA7F45200E81FB7 /* Note.swift */; };
+		6389D6FB1AA92F2200E81FB7 /* treble_clef.png in Resources */ = {isa = PBXBuildFile; fileRef = 6389D6FA1AA92F2200E81FB7 /* treble_clef.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		635C220E1AA58B5700FFE9C3 /* Piano.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Piano.swift; sourceTree = "<group>"; };
 		635C22101AA68B2700FFE9C3 /* KeySignature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeySignature.swift; sourceTree = "<group>"; };
 		6389D6F81AA7F45200E81FB7 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		6389D6FA1AA92F2200E81FB7 /* treble_clef.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = treble_clef.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		631E42591AA16AEF007EF87D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6389D6FA1AA92F2200E81FB7 /* treble_clef.png */,
 				631E425A1AA16B01007EF87D /* play_sound.png */,
 			);
 			name = Images;
@@ -112,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				6340DDE21A9ED437002C0611 /* Chord.swift */,
+				630C6D871A9EDC9100EC5669 /* Instrument.swift */,
 				635C22101AA68B2700FFE9C3 /* KeySignature.swift */,
 				6389D6F81AA7F45200E81FB7 /* Note.swift */,
 				635C220E1AA58B5700FFE9C3 /* Piano.swift */,
@@ -151,7 +155,6 @@
 				630C6D8B1A9EE35300EC5669 /* IdentifyChordChanges.swift */,
 				633667E41A9F9F99004D4104 /* IdentifyIntervals.swift */,
 				633667E81A9FAB6C004D4104 /* IdentifyIntervalsSettings.swift */,
-				630C6D871A9EDC9100EC5669 /* Instrument.swift */,
 				635C220A1AA18BA200FFE9C3 /* Logger.swift */,
 				631E42511AA0EF60007EF87D /* SelectInstrument.swift */,
 				631E42571AA14533007EF87D /* Selectintervals.swift */,
@@ -278,6 +281,7 @@
 				6340DDC61A9ED273002C0611 /* Main.storyboard in Resources */,
 				6340DDCB1A9ED273002C0611 /* LaunchScreen.xib in Resources */,
 				631E425B1AA16B01007EF87D /* play_sound.png in Resources */,
+				6389D6FB1AA92F2200E81FB7 /* treble_clef.png in Resources */,
 				6340DDC81A9ED273002C0611 /* Images.xcassets in Resources */,
 				633667E71A9FA8F9004D4104 /* Notes.rtf in Resources */,
 			);

@@ -13,17 +13,19 @@ class IdentifyChordChanges: UIViewController {
         super.viewDidLoad()
         self.sliderTempo.minimumValue = 0.3
         self.sliderTempo.maximumValue = 1.0
-        let b = UIBarButtonItem(title: "Settings", style: .Plain, target: self, action: Selector("settings"))
-        self.navigationItem.rightBarButtonItem = b
+        let btnSettings = UIBarButtonItem(title: "Settings", style: .Plain, target: self, action: Selector("settings"))
+        self.navigationItem.rightBarButtonItem = btnSettings
     }
-    
+
+
+    func settings() {
+        println("go to settings")
+        performSegueWithIdentifier("segueToSettings", sender: nil)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func settings() {
-        println("Settings..")
     }
     
     func getStaff() -> Staff {

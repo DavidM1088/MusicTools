@@ -16,17 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kh9-mb-LTe">
-                                <rect key="frame" x="16" y="83" width="57" height="30"/>
-                                <state key="normal" title="Settings">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="nFm-Lf-0uF" kind="show" id="rO9-u7-fLh"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3a-Jb-HPK">
-                                <rect key="frame" x="16" y="248" width="127" height="30"/>
+                                <rect key="frame" x="16" y="216" width="127" height="30"/>
                                 <state key="normal" title="Ascending Chords">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -35,7 +26,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSV-qI-DgO">
-                                <rect key="frame" x="16" y="407" width="33" height="30"/>
+                                <rect key="frame" x="16" y="375" width="33" height="30"/>
                                 <state key="normal" title="Stop">
                                     <color key="titleColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -45,7 +36,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gA7-Nx-Kxk">
-                                <rect key="frame" x="16" y="275" width="126" height="30"/>
+                                <rect key="frame" x="16" y="243" width="126" height="30"/>
                                 <state key="normal" title="Progression 12bar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -54,28 +45,28 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Inversions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLK-E9-SFN">
-                                <rect key="frame" x="16" y="128" width="78" height="21"/>
+                                <rect key="frame" x="16" y="106" width="78" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pnb-fN-JKN">
-                                <rect key="frame" x="102" y="123" width="51" height="31"/>
+                                <rect key="frame" x="102" y="101" width="51" height="31"/>
                             </switch>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="8kr-Vu-jcz">
-                                <rect key="frame" x="100" y="153" width="217" height="31"/>
+                                <rect key="frame" x="100" y="131" width="217" height="31"/>
                                 <connections>
                                     <action selector="sliderTempoChanged:" destination="9pv-A4-QxB" eventType="valueChanged" id="cv1-xh-Wfg"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tempo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjA-t2-bbD">
-                                <rect key="frame" x="16" y="162" width="52" height="21"/>
+                                <rect key="frame" x="16" y="140" width="52" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ox-lf-xyX">
-                                <rect key="frame" x="16" y="302" width="139" height="30"/>
+                                <rect key="frame" x="16" y="270" width="139" height="30"/>
                                 <state key="normal" title="Progression Circular">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -84,7 +75,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zP7-kQ-gdK">
-                                <rect key="frame" x="16" y="328" width="122" height="30"/>
+                                <rect key="frame" x="16" y="296" width="122" height="30"/>
                                 <state key="normal" title="Progression Bach">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -93,7 +84,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9U-d0-Gu0">
-                                <rect key="frame" x="16" y="355" width="153" height="30"/>
+                                <rect key="frame" x="16" y="323" width="153" height="30"/>
                                 <state key="normal" title="Progression Pachelbel">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -108,37 +99,12 @@
                     <connections>
                         <outlet property="sliderTempo" destination="8kr-Vu-jcz" id="CiI-7x-a7f"/>
                         <outlet property="switchInversions" destination="Pnb-fN-JKN" id="mEj-VZ-tTT"/>
+                        <segue destination="x65-WG-dbt" kind="show" identifier="segueToSettings" id="WRB-tk-9eg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1562" y="-320"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="KlW-gR-gMn">
-            <objects>
-                <viewController id="nFm-Lf-0uF" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KVU-9f-CQN"/>
-                        <viewControllerLayoutGuide type="bottom" id="kh9-Mc-Jtj"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Iid-fN-KfJ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xc7-rE-2xH">
-                                <rect key="frame" x="16" y="80" width="57" height="30"/>
-                                <state key="normal" title="Settings">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="slC-37-TQ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2203" y="-320"/>
         </scene>
         <!--Identify Intervals-->
         <scene sceneID="wg7-f3-ORb">
@@ -199,7 +165,7 @@
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZRr-cS-ExY" customClass="StaffView" customModule="MusicTools" customModuleProvider="target">
                                 <rect key="frame" x="16" y="250" width="300" height="300"/>
-                                <color key="backgroundColor" red="0.9450981021" green="0.84705889229999998" blue="0.66666668650000005" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="backgroundColor" red="0.80000001192092896" green="1" blue="0.40000000596046448" alpha="0.28999999999999998" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -216,7 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1562" y="360"/>
+            <point key="canvasLocation" x="1553" y="413"/>
         </scene>
         <!--Identify Intervals Settings-->
         <scene sceneID="WKC-xo-shI">
@@ -428,4 +394,7 @@
         <image name="play_sound.png" width="225" height="225"/>
         <image name="second" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="cew-ZF-W5H"/>
+    </inferredMetricsTieBreakers>
 </document>
