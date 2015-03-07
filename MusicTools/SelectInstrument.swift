@@ -1,8 +1,9 @@
 import UIKit
 
 class SelectInstrument: UITableViewController {
-    var instruments = SelectedInstruments.sharedInstance
-    var staff : Staff?
+    private var instruments = SelectedInstruments.sharedInstance
+    private var staff : Staff?
+    private var lastSelectedPath : NSIndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,12 +40,14 @@ class SelectInstrument: UITableViewController {
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("instrument") as UITableViewCell
         cell.textLabel?.text = self.instruments.instruments[indexPath.row].name
 
+        //store the midi id in the button title so we can retrieve the midi id on button push
         var btnPlay : UIButton = cell.viewWithTag(10) as UIButton!
         var midiId = "\(self.instruments.instruments[indexPath.row].id)"
         btnPlay.setTitle(midiId, forState: UIControlState.Selected)
 
         if indexPath.row == self.instruments.selected {
             cell.accessoryType = .Checkmark
+            self.lastSelectedPath = indexPath
         }
         else {
             cell.accessoryType = .None
@@ -53,17 +56,20 @@ class SelectInstrument: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //println("keyselected..\(self.items[indexPath.row]) ")
-        let index = 3
-        var path = NSIndexPath(forRow: instruments.selected, inSection: 0)
-        var selectedCell : UITableViewCell = self.tableView.cellForRowAtIndexPath(path)!
-        selectedCell.accessoryType = .None
-        
-        var cell : UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPath)!
+        if self.lastSelectedPath != nil {
+            if self.tableView.cellForRowAtIndexPath(self.lastSelectedPath!) == nil {
+                //println("----------> cell for last path is nil \(self.lastSelectedPath)")
+                //previous selected row is scrolled out of view?
+            }
+            else {
+                var lastCell : UITableViewCell = self.tableView.cellForRowAtIndexPath(self.lastSelectedPath!)!
+                lastCell.accessoryType = .None
+            }
+        }
+        self.lastSelectedPath = indexPath
         self.instruments.selected = indexPath.row
-        cell.accessoryType = .Checkmark 
-        //MIDISampler.sharedInstance.loadInstrument(0, instr: self.instruments.instruments[indexPath.row].id)
-        //self.lastSelected = indexPath
-        
+        var cell : UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPath)!
+        cell.accessoryType = .Checkmark
+        //cell.n
     }
 }

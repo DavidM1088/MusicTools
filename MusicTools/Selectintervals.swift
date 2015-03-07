@@ -61,6 +61,5 @@ class SelectIntervals: UITableViewController {
             cell.accessoryType = .None
             self.selectedIntervals.selected[indexPath.row] = false
         }
-        
     }
 }

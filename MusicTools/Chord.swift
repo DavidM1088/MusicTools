@@ -7,7 +7,6 @@ let CHORD_DIMINISHED=2
 let DURATION_QTR : Float = 0.25
 let NOTE_WHOLE : Float = 1.0
 
-let ACCIDENTAL_SHARP = 1
 
 //any object that can be placed on a staff
 class StaffObject {

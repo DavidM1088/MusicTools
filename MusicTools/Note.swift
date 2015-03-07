@@ -1,6 +1,9 @@
-
-
 import Foundation
+
+let ACCIDENTAL_NONE = 0
+let ACCIDENTAL_SHARP = 1
+let ACCIDENTAL_FLAT = 2
+let ACCIDENTAL_NATURAL = 3
 
 // describes how the note is presented on a music staff (usually in a given key)
 class NotePresentation {
@@ -65,24 +68,31 @@ class Note : Duration {
     }
     
     //returns how the note would be presented in the C major scale
-    class func cMajorNotePresentation(midiNoteValue : Int) -> NotePresentation {
-        let noteOffset = midiNoteValue % 12
+    class func cMajorNotePresentation(midiNoteValue : Int, useFlat: Bool) -> NotePresentation {
+        var noteOffset = midiNoteValue % 12
         let octave = midiNoteValue / Int(12) - 1
-        var name = ""
+        var accidental = ACCIDENTAL_NONE
         
-        switch (noteOffset) {
-        case 0,1: name = "C"
-        case 2,3: name = "D"
-        case 4: name = "E"
-        case 5,6: name = "F"
-        case 7,8: name = "G"
-        case 9,10: name = "A"
-        case 11: name = "B"
-        default: name = ""
-        }
-        var accidental = 0
         if !Piano.isWhiteNote(noteOffset) {
-            accidental = ACCIDENTAL_SHARP
+            if useFlat {
+                accidental = ACCIDENTAL_FLAT
+                noteOffset += 1 //e.g. F# becomes Gb
+            }
+            else {
+                accidental = ACCIDENTAL_SHARP
+            }
+        }
+        
+        var name = ""
+        switch (noteOffset) {
+            case 0,1: name = "C"
+            case 2,3: name = "D"
+            case 4: name = "E"
+            case 5,6: name = "F" //e.g. note name for 6 = F# is 'F' (and a # is applied)
+            case 7,8: name = "G"
+            case 9,10: name = "A"
+            case 11: name = "B"
+            default: name = ""
         }
         return NotePresentation(name: name, octave: octave, accidental: accidental)
     }

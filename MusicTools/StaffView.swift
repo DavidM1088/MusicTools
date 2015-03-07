@@ -60,6 +60,18 @@ class StaffView : UIView {
         CGContextFillPath(ctx)
     }
     
+    private func drawAccidental(ctx : CGContext, accidental : Int, x : CGFloat, y : CGFloat, height : CGFloat, width : CGFloat ) {
+        var accImage : UIImage? = nil
+        switch (accidental) {
+            case ACCIDENTAL_FLAT: accImage = UIImage(named: "flat.png")!
+            case ACCIDENTAL_SHARP: accImage = UIImage(named: "sharp.png")!
+            case ACCIDENTAL_NATURAL: accImage = UIImage(named: "natural.png")!
+            default: accImage = nil
+        }
+        let accRect = CGRect(x: x - width/2, y: y - height/2, width: width, height: height)
+        CGContextDrawImage(ctx, accRect, accImage!.CGImage)
+    }
+    
     private func offsetFromC(note : NotePresentation) -> Int {
         var offset = 0
         switch (note.name) {
@@ -111,7 +123,7 @@ class StaffView : UIView {
         CGContextStrokePath(ctx)
         
         // draw the clef and key signature
-        let clefHeight : CGFloat = 6 * lineSpace
+        let clefHeight : CGFloat = 6 * lineSpace + lineSpace/1.5
         let clefWidth = clefHeight / 2.0
         var clefImage : UIImage = UIImage(named: "treble_clef.png")!
         var clefOffset  : CGFloat = CGFloat(middleCPos - lineSpace/2)
@@ -138,13 +150,16 @@ class StaffView : UIView {
                 } */
                 if object is Note {
                     let note = object as Note
-                    let pres = key.notePresentation(note.noteValue)
-                    println("View...\(pres.toString())")
-                    let noteOffset = self.offsetFromC(pres)
+                    let notePresentation = key.notePresentation(note.noteValue)
+                    println("View...\(notePresentation.toString())")
+                    let noteOffset = self.offsetFromC(notePresentation)
                     for var index = -8; index < 20; index++ {
                         let ypos : CGFloat = middleCPos + CGFloat(index) * lineSpace/2
                         let noteWidth = 2 * lineSpace
                         if index == noteOffset {
+                            if notePresentation.accidental != ACCIDENTAL_NONE {
+                                self.drawAccidental(ctx, accidental: notePresentation.accidental, x: x - 14, y: ypos+4, height: lineSpace * 1.5, width : noteWidth)
+                            }
                             self.drawNote(ctx, x: x, y: ypos, height: lineSpace, width : noteWidth)
                         }
                         // partially draw in any missing ledger lines for the note

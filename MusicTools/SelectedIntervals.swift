@@ -33,6 +33,11 @@ class SelectedIntervals {
             selected.append(false)
         }
         selected[7] = true
+        selected[1] = true
+        selected[3] = true
+        selected[6] = true
+        selected[8] = true
+        selected[10] = true
     }
     
     class var sharedInstance: SelectedIntervals {

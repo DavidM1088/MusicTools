@@ -54,9 +54,9 @@ class KeySignature {
     func notePresentation(midiNote : Int) -> NotePresentation {
         let octave : Int  = midiNote / Int(12) - 1  //middle c (=60) is most often notated as C octave 4 (C4)
         let noteNormalized = midiNote % 12 //normalize to C=0 to B=11
-        let cMajorPres = Note.cMajorNotePresentation(noteNormalized)
+        let cMajorPres = Note.cMajorNotePresentation(noteNormalized, useFlat: true)
         var noteName = cMajorPres.name
-        var accidental = 0
+        var accidental = cMajorPres.accidental
         return NotePresentation(name: noteName, octave: octave, accidental: accidental)
     }
     
