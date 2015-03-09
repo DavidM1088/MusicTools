@@ -32,12 +32,12 @@ class SelectedIntervals {
         for index in 0...self.intervals.count {
             selected.append(false)
         }
+        selected[4] = true
         selected[7] = true
-        selected[1] = true
-        selected[3] = true
-        selected[6] = true
-        selected[8] = true
-        selected[10] = true
+        selected[2] = true
+        //selected[6] = true
+        //selected[8] = true
+        //selected[10] = true
     }
     
     class var sharedInstance: SelectedIntervals {

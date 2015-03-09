@@ -120,12 +120,12 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tempo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFX-iE-564">
                                 <rect key="frame" x="16" y="72" width="52" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkH-pS-Rky">
-                                <rect key="frame" x="16" y="183" width="120" height="30"/>
+                                <rect key="frame" x="16" y="209" width="120" height="30"/>
                                 <state key="normal" title="Play Next Interval">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -133,23 +133,17 @@
                                     <action selector="btnPlayClicked:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="xeT-Uv-AVM"/>
                                 </connections>
                             </button>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="QYG-R1-XDV">
-                                <rect key="frame" x="139" y="106" width="94" height="29"/>
-                                <connections>
-                                    <action selector="stepperOctaveClicked:" destination="8rJ-Kc-sve" eventType="valueChanged" id="3Ph-Kp-s4i"/>
-                                </connections>
-                            </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Octave" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPl-Jh-Ee0">
                                 <rect key="frame" x="16" y="110" width="55" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="8lC-4Z-aCn">
-                                <rect key="frame" x="145" y="72" width="138" height="31"/>
+                                <rect key="frame" x="81" y="68" width="225" height="31"/>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pmL-Ww-Gti">
-                                <rect key="frame" x="16" y="151" width="104" height="30"/>
+                                <rect key="frame" x="16" y="181" width="104" height="30"/>
                                 <state key="normal" title="Repeat Interval">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -158,22 +152,50 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aC4-5r-PIK">
-                                <rect key="frame" x="16" y="221" width="157" height="21"/>
+                                <rect key="frame" x="16" y="243" width="157" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZRr-cS-ExY" customClass="StaffView" customModule="MusicTools" customModuleProvider="target">
-                                <rect key="frame" x="16" y="250" width="300" height="300"/>
+                                <rect key="frame" x="16" y="272" width="288" height="271"/>
                                 <color key="backgroundColor" red="0.80000001192092896" green="1" blue="0.40000000596046448" alpha="0.28999999999999998" colorSpace="calibratedRGB"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Direction" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9u-Sm-n86">
+                                <rect key="frame" x="16" y="149" width="92" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="QYG-R1-XDV">
+                                <rect key="frame" x="210" y="106" width="94" height="29"/>
+                                <connections>
+                                    <action selector="stepperOctaveClicked:" destination="8rJ-Kc-sve" eventType="valueChanged" id="3Ph-Kp-s4i"/>
+                                </connections>
+                            </stepper>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfm-El-yTP">
+                                <rect key="frame" x="83" y="110" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wmH-V5-n7e">
+                                <rect key="frame" x="181" y="144" width="123" height="29"/>
+                                <segments>
+                                    <segment title="Asc"/>
+                                    <segment title="Desc"/>
+                                    <segment title="Both"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="dcv-rH-aPE"/>
                     <connections>
                         <outlet property="btnRepeatClicked" destination="pmL-Ww-Gti" id="clm-NI-TdU"/>
+                        <outlet property="labelOctave" destination="Cfm-El-yTP" id="tLo-GZ-vYC"/>
                         <outlet property="lblIntervalAnswer" destination="aC4-5r-PIK" id="l8X-p8-2tY"/>
+                        <outlet property="segmentDirection" destination="wmH-V5-n7e" id="pow-NK-KZK"/>
                         <outlet property="sliderSpeed" destination="8lC-4Z-aCn" id="UjJ-BJ-0XC"/>
                         <outlet property="stepperOctave" destination="QYG-R1-XDV" id="LaW-Ye-ytZ"/>
                         <outlet property="uiViewStaff" destination="ZRr-cS-ExY" id="1zb-Xe-6qX"/>
@@ -395,6 +417,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WRB-tk-9eg"/>
+        <segue reference="cew-ZF-W5H"/>
     </inferredMetricsTieBreakers>
 </document>

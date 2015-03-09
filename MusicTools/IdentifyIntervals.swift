@@ -16,9 +16,14 @@ class IdentifyIntervals: UIViewController {
     @IBOutlet weak var btnRepeatClicked: UIButton!
     
     @IBOutlet weak var lblIntervalAnswer: UILabel!
-    
 
+    @IBOutlet weak var swithDescending: UISwitch!
+    
     @IBOutlet weak var uiViewStaff: StaffView!
+    
+    @IBOutlet weak var segmentDirection: UISegmentedControl!
+    
+    @IBOutlet weak var labelOctave: UILabel!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -28,9 +33,10 @@ class IdentifyIntervals: UIViewController {
         super.viewDidLoad()
         let btnSettings = UIBarButtonItem(title: "Settings", style: .Plain, target: self, action: Selector("settings"))
         self.navigationItem.rightBarButtonItem = btnSettings
-        stepperOctave.value = 0
-        stepperOctave.minimumValue = -2
-        stepperOctave.maximumValue = 3
+        stepperOctave.value = 4
+        self.setOctaveDesc()
+        stepperOctave.minimumValue = 1
+        stepperOctave.maximumValue = 7
         stepperOctave.stepValue = 1
         self.btnRepeatClicked.enabled = false
         self.lblIntervalAnswer.hidden = true
@@ -41,9 +47,12 @@ class IdentifyIntervals: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    private func setOctaveDesc() {
+        self.labelOctave!.text = "\(Int(self.stepperOctave.value))"
+    }
     
     @IBAction func stepperOctaveClicked(sender: AnyObject) {
-        //self.octave = self.octave - 1
+        self.setOctaveDesc()
     }
     
     func settings() {
@@ -107,7 +116,11 @@ class IdentifyIntervals: UIViewController {
             AppDelegate.userMessage("No intervals selected")
             return
         }
-        let totalCombinations = self.selectedTonics.selectedCount() * self.selectedIntervals.selectedCount()
+        
+        var totalCombinations = self.selectedTonics.selectedCount() * self.selectedIntervals.selectedCount()
+        if self.segmentDirection.selectedSegmentIndex == 2 {
+            totalCombinations *= 2
+        }
         
         var tonic = 0
         var interval = 0
@@ -117,7 +130,7 @@ class IdentifyIntervals: UIViewController {
                 let index = Int(rand()) % self.selectedTonics.selected.count
                 if self.selectedTonics.selected[index] {
                     tonic = self.selectedTonics.selectedNotes[index]
-                    tonic += Int(self.stepperOctave.value) * 12
+                    tonic += Int(self.stepperOctave.value - 4) * 12
                     break
                 }
             }
@@ -126,6 +139,15 @@ class IdentifyIntervals: UIViewController {
                 let index = Int(rand()) % self.selectedIntervals.selected.count
                 if self.selectedIntervals.selected[index] {
                     interval = self.selectedIntervals.intervals[index].interval
+                    if self.segmentDirection.selectedSegmentIndex == 1 {
+                        interval = 0 - interval
+                    }
+                    if self.segmentDirection.selectedSegmentIndex == 2 {
+                        let rnd = Int(rand()) % 2
+                        if rnd == 1 {
+                            interval = 0 - interval
+                        }
+                    }
                     break
                 }
             }
@@ -139,12 +161,13 @@ class IdentifyIntervals: UIViewController {
                 }
             }
         }
+        //println("++++++++++++++ \(self.segmentDirection.selectedSegmentIndex) \()")
         
         var note1 = Note(noteValue: tonic)
         var note2 = Note(noteValue: tonic + interval)
         self.playInterval(Note(note: note1), note2: Note(note: note2))
         
-        self.lblIntervalAnswer.text = self.selectedIntervals.intervals[interval].name
+        self.lblIntervalAnswer.text = self.selectedIntervals.intervals[abs(interval)].name
         self.lblIntervalAnswer.hidden = false
         
         self.lastTonic = tonic
