@@ -38,7 +38,7 @@ class SelectedInstruments {
         instruments.append(MidiInstrument(name: "Fantasia", id:88))
         instruments.append(MidiInstrument(name: "Warm Pad", id:89))
         instruments.append(MidiInstrument(name: "Soundtrack", id:97))
-        selected = 9
+        selected = 8
     }
     
     class var sharedInstance: SelectedInstruments {

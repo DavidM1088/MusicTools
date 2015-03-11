@@ -7,6 +7,7 @@ let STAFF_SINGLE_STAFF = 1 //either treble or bass but not both
 class StaffView : UIView {
     private var staff : Staff?
     private var staffMode : Int = STAFF_DOUBLE_STAFF
+    private let lineSpace : CGFloat = 12.0
     
     private let MIDDLE_C = 60
     
@@ -88,6 +89,30 @@ class StaffView : UIView {
         return offset + octaveOffset
     }
     
+    private func drawNote(ctx : CGContext, note : Note, key : KeySignature, xPos : CGFloat, middleCPos : CGFloat) {
+        let notePresentation = key.notePresentation(note.noteValue)
+        println("View...\(notePresentation.toString())")
+        let noteOffset = self.offsetFromC(notePresentation)
+        for var index = -8; index < 20; index++ {
+            let ypos : CGFloat = middleCPos + CGFloat(index) * lineSpace/2
+            let noteWidth = 2 * lineSpace
+            if index == noteOffset {
+                if notePresentation.accidental != ACCIDENTAL_NONE {
+                    self.drawAccidental(ctx, accidental: notePresentation.accidental, x: xPos - 14, y: ypos+4, height: lineSpace * 1.5, width : noteWidth)
+                }
+                self.drawNote(ctx, x: xPos, y: ypos, height: lineSpace, width : noteWidth)
+            }
+            // partially draw in any missing ledger lines for the note
+            if index % 2 == 0 {
+                if (index <= 0 && index >= noteOffset) || (index > 0 && index <= noteOffset) {
+                    CGContextMoveToPoint(ctx, xPos - 4, ypos)
+                    CGContextAddLineToPoint(ctx, xPos + noteWidth + 4, ypos)
+                    CGContextStrokePath(ctx)
+                }
+            }
+        }
+    }
+    
     override func drawRect(rect: CGRect) {
         if self.staff == nil {
             return
@@ -104,10 +129,10 @@ class StaffView : UIView {
         transform = CGAffineTransformScale(transform, 1.0, -1.0) //switch origin to bottom left since images render upside down otherwise
         CGContextConcatCTM(ctx, transform)
 
-        let lineSpace : CGFloat = 12.0
         let centerLine : CGFloat = rect.height / 2.0
         var xPos : CGFloat = 10.0
         var middleCPos :CGFloat = 0
+        CGContextSetRGBStrokeColor(ctx, 0, 0, 0, 0.50)
         if self.staffMode == 0 {
             //double staff
         }
@@ -129,7 +154,6 @@ class StaffView : UIView {
         var clefOffset  : CGFloat = CGFloat(middleCPos - lineSpace/2)
         let clefRect = CGRect(x: xPos, y: clefOffset, width: clefWidth, height: clefHeight)
         CGContextDrawImage(ctx, clefRect, clefImage.CGImage)
-        //CGContextStrokeRect(ctx, clefRect)
         xPos += clefWidth
         xPos += 32
         
@@ -139,38 +163,16 @@ class StaffView : UIView {
         for voice in self.staff!.voices {
             var x : CGFloat = xPos
             for object in voice.contents {
-                /*if object is Chord {
-                    let chord = object as Chord
-                    if chord.notes[0].noteValue < lo {
-                        lo = chord.notes[0].noteValue
+                if object is Chord {
+                    let chord : Chord = object as Chord
+                    for note in chord.notes {
+                        self.drawNote(ctx, note: note, key: key, xPos: x, middleCPos : middleCPos)
                     }
-                    if chord.notes[chord.notes.count-1].noteValue > hi {
-                        hi = chord.notes[chord.notes.count-1].noteValue
-                    }
-                } */
+                }
                 if object is Note {
-                    let note = object as Note
-                    let notePresentation = key.notePresentation(note.noteValue)
-                    println("View...\(notePresentation.toString())")
-                    let noteOffset = self.offsetFromC(notePresentation)
-                    for var index = -8; index < 20; index++ {
-                        let ypos : CGFloat = middleCPos + CGFloat(index) * lineSpace/2
-                        let noteWidth = 2 * lineSpace
-                        if index == noteOffset {
-                            if notePresentation.accidental != ACCIDENTAL_NONE {
-                                self.drawAccidental(ctx, accidental: notePresentation.accidental, x: x - 14, y: ypos+4, height: lineSpace * 1.5, width : noteWidth)
-                            }
-                            self.drawNote(ctx, x: x, y: ypos, height: lineSpace, width : noteWidth)
-                        }
-                        // partially draw in any missing ledger lines for the note
-                        if index % 2 == 0 {
-                            if (index <= 0 && index >= noteOffset) || (index > 0 && index <= noteOffset) {
-                                CGContextMoveToPoint(ctx, x - 4, ypos)
-                                CGContextAddLineToPoint(ctx, x + noteWidth + 4, ypos)
-                                CGContextStrokePath(ctx)
-                            }
-                        }
-                    }
+                    let note : Note = object as Note
+                    self.drawNote(ctx, note: note, key: key, xPos: x, middleCPos : middleCPos)
+                    
                 }
                 x += 50
             }

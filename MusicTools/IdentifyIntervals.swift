@@ -17,13 +17,13 @@ class IdentifyIntervals: UIViewController {
     
     @IBOutlet weak var lblIntervalAnswer: UILabel!
 
-    @IBOutlet weak var swithDescending: UISwitch!
-    
     @IBOutlet weak var uiViewStaff: StaffView!
     
     @IBOutlet weak var segmentDirection: UISegmentedControl!
     
     @IBOutlet weak var labelOctave: UILabel!
+    
+    @IBOutlet weak var viewGraph: GraphView!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -56,7 +56,6 @@ class IdentifyIntervals: UIViewController {
     }
     
     func settings() {
-        println("go to settings")
         performSegueWithIdentifier("segueToSettings", sender: nil)
     }
     
@@ -100,6 +99,8 @@ class IdentifyIntervals: UIViewController {
         staff.play()
         self.uiViewStaff.setStaff(staff, staffMode: STAFF_SINGLE_STAFF)
         self.uiViewStaff.setNeedsDisplay()
+        self.viewGraph.setNotes([note1.noteValue, note2.noteValue])
+        self.viewGraph.setNeedsDisplay()
     }
 
     @IBAction func btnRepeatClicked(sender: AnyObject) {
@@ -161,7 +162,6 @@ class IdentifyIntervals: UIViewController {
                 }
             }
         }
-        //println("++++++++++++++ \(self.segmentDirection.selectedSegmentIndex) \()")
         
         var note1 = Note(noteValue: tonic)
         var note2 = Note(noteValue: tonic + interval)
