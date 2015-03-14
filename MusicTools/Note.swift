@@ -5,6 +5,8 @@ let ACCIDENTAL_SHARP = 1
 let ACCIDENTAL_FLAT = 2
 let ACCIDENTAL_NATURAL = 3
 
+let MIDDLE_C = 60
+
 // describes how the note is presented on a music staff (usually in a given key)
 class NotePresentation {
     var name : String
@@ -19,6 +21,35 @@ class NotePresentation {
     
     func toString() -> String {
         return "note presentation name:\(self.name) octave:\(octave) accidental:\(accidental)"
+    }
+}
+
+//any object that can be placed on a staff
+class StaffObject {
+    
+}
+
+//an object that has some duration on a staff
+class Duration : StaffObject {
+    var duration : Float
+    init (duration : Float) {
+        self.duration = duration
+    }
+}
+
+class Rest : Duration {
+    init() {
+        super.init(duration: 0.0)
+    }
+}
+
+class Accidental : StaffObject {
+    var midiOffset = 0
+    var type = ACCIDENTAL_NONE
+    
+    init(midiOffset : Int, type  : Int) {
+        self.midiOffset = midiOffset
+        self.type = type
     }
 }
 

@@ -7,27 +7,6 @@ let CHORD_DIMINISHED=2
 let DURATION_QTR : Float = 0.25
 let NOTE_WHOLE : Float = 1.0
 
-
-//any object that can be placed on a staff
-class StaffObject {
-    
-}
-
-//an object that has some duration on a staff
-class Duration : StaffObject {
-    var duration : Float
-    init (duration : Float) {
-        self.duration = duration
-    }
-}
-
-class Rest : Duration {
-    init() {
-        super.init(duration: 0.0)
-    }
-}
-
-
 class Chord  : StaffObject {
     var notes : [Note] = []
     

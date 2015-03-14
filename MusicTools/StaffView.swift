@@ -4,13 +4,14 @@ import UIKit
 let STAFF_DOUBLE_STAFF = 0 //show treble and bass
 let STAFF_SINGLE_STAFF = 1 //either treble or bass but not both
 
+let STAFF_TREBLE = 0
+let STAFF_BASE = 1
+
 class StaffView : UIView {
     private var staff : Staff?
     private var staffMode : Int = STAFF_DOUBLE_STAFF
     private let lineSpace : CGFloat = 12.0
-    
-    private let MIDDLE_C = 60
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -71,8 +72,11 @@ class StaffView : UIView {
         }
         let accRect = CGRect(x: x - width/2, y: y - height/2, width: width, height: height)
         CGContextDrawImage(ctx, accRect, accImage!.CGImage)
+        //CGContextAddEllipseInRect(ctx, accRect)
+        //CGContextFillPath(ctx)
     }
-    
+
+    //the line offset on the staff of this note from middle C
     private func offsetFromC(note : NotePresentation) -> Int {
         var offset = 0
         switch (note.name) {
@@ -89,22 +93,38 @@ class StaffView : UIView {
         return offset + octaveOffset
     }
     
-    private func drawNote(ctx : CGContext, note : Note, key : KeySignature, xPos : CGFloat, middleCPos : CGFloat) {
-        let notePresentation = key.notePresentation(note.noteValue)
-        println("View...\(notePresentation.toString())")
-        let noteOffset = self.offsetFromC(notePresentation)
+    private func renderObject(ctx : CGContext, object : StaffObject, key : KeySignature, xPos : CGFloat, middleCPos : CGFloat) {
+        var accidental = ACCIDENTAL_NONE
+        var presentation : NotePresentation?
+        
+        if object is Note {
+            let note : Note = object as Note
+            presentation = key.notePresentation(note.noteValue)
+            //println("View...\(notePresentation.toString())")
+            accidental = presentation!.accidental
+        }
+        if object is Accidental {
+            let acc = object as Accidental
+            accidental = acc.type
+            presentation = key.notePresentation(acc.midiOffset)
+        }
+        
+        let offsetLines = self.offsetFromC(presentation!)
+
         for var index = -8; index < 20; index++ {
             let ypos : CGFloat = middleCPos + CGFloat(index) * lineSpace/2
             let noteWidth = 2 * lineSpace
-            if index == noteOffset {
-                if notePresentation.accidental != ACCIDENTAL_NONE {
-                    self.drawAccidental(ctx, accidental: notePresentation.accidental, x: xPos - 14, y: ypos+4, height: lineSpace * 1.5, width : noteWidth)
+            if index == offsetLines {
+                if accidental != ACCIDENTAL_NONE {
+                    self.drawAccidental(ctx, accidental: accidental, x: xPos - 14, y: ypos, height: lineSpace * 1.5, width : noteWidth)
                 }
-                self.drawNote(ctx, x: xPos, y: ypos, height: lineSpace, width : noteWidth)
+                if object is Note {
+                    self.drawNote(ctx, x: xPos, y: ypos, height: lineSpace, width : noteWidth)
+                }
             }
-            // partially draw in any missing ledger lines for the note
+            // partially draw in any missing ledger lines for the note if its above or below the 5 staff lines
             if index % 2 == 0 {
-                if (index <= 0 && index >= noteOffset) || (index > 0 && index <= noteOffset) {
+                if (index <= 0 && index >= offsetLines) || (index > 0 && index <= offsetLines) {
                     CGContextMoveToPoint(ctx, xPos - 4, ypos)
                     CGContextAddLineToPoint(ctx, xPos + noteWidth + 4, ypos)
                     CGContextStrokePath(ctx)
@@ -119,9 +139,9 @@ class StaffView : UIView {
         }
         //determine clef to show
         let hiLo = self.hiLoNotes()
-        let trebleRange = hiLo.1 - MIDDLE_C
-        let bassRange = MIDDLE_C - hiLo.0
-        let clefToShow = trebleRange >= bassRange ? 0 : 1
+        let trebleRange = abs(hiLo.1 - MIDDLE_C)
+        let bassRange = abs(hiLo.0 - MIDDLE_C)
+        let clefToShow = trebleRange >= bassRange ? STAFF_TREBLE : STAFF_BASE
         
         //draw staff lines
         var ctx = UIGraphicsGetCurrentContext()
@@ -143,35 +163,45 @@ class StaffView : UIView {
                 CGContextMoveToPoint(ctx, xPos, rowAt)
                 CGContextAddLineToPoint(ctx, rect.width - xPos, rowAt)
             }
-            middleCPos = (CGFloat(midLine - 6) * lineSpace) + centerLine
+            middleCPos = clefToShow == STAFF_TREBLE ? (CGFloat(midLine - 6) * lineSpace) + centerLine : (CGFloat(midLine + 6) * lineSpace) + centerLine
         }
         CGContextStrokePath(ctx)
         
-        // draw the clef and key signature
+        // draw the clef
         let clefHeight : CGFloat = 6 * lineSpace + lineSpace/1.5
         let clefWidth = clefHeight / 2.0
-        var clefImage : UIImage = UIImage(named: "treble_clef.png")!
-        var clefOffset  : CGFloat = CGFloat(middleCPos - lineSpace/2)
+        var clefImage : UIImage = clefToShow == STAFF_TREBLE ? UIImage(named: "treble_clef.png")! : UIImage(named: "bass_clef.png")!
+        var clefOffset  : CGFloat = clefToShow == STAFF_TREBLE ? CGFloat(middleCPos - lineSpace/2) : 24
         let clefRect = CGRect(x: xPos, y: clefOffset, width: clefWidth, height: clefHeight)
         CGContextDrawImage(ctx, clefRect, clefImage.CGImage)
         xPos += clefWidth
-        xPos += 32
+        xPos += 24
         
-        // draw the notes for each voice
-        let key = KeySignature.getSelectedKey()
+        //draw the key signature
+        let key = SelectedKeys.getSelectedKey()
+        let (sharp, accidentals) = key.getAccidentals(clefToShow)
+
+        for accidental in accidentals {
+            let type = sharp ? ACCIDENTAL_SHARP : ACCIDENTAL_FLAT
+            let acc = Accidental(midiOffset: accidental, type: type)
+            self.renderObject(ctx, object: acc, key: key, xPos: xPos, middleCPos : middleCPos)
+            xPos += 12
+        }
+        xPos += 24
         
+        // draw the notes in the voices
         for voice in self.staff!.voices {
             var x : CGFloat = xPos
             for object in voice.contents {
                 if object is Chord {
                     let chord : Chord = object as Chord
                     for note in chord.notes {
-                        self.drawNote(ctx, note: note, key: key, xPos: x, middleCPos : middleCPos)
+                        self.renderObject(ctx, object: note, key: key, xPos: x, middleCPos : middleCPos)
                     }
                 }
                 if object is Note {
                     let note : Note = object as Note
-                    self.drawNote(ctx, note: note, key: key, xPos: x, middleCPos : middleCPos)
+                    self.renderObject(ctx, object: note, key: key, xPos: x, middleCPos : middleCPos)
                     
                 }
                 x += 50
