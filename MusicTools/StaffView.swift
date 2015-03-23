@@ -1,4 +1,4 @@
-import Foundation
+ import Foundation
 import UIKit
 
 let STAFF_DOUBLE_STAFF = 0 //show treble and bass
@@ -76,7 +76,7 @@ class StaffView : UIView {
         //CGContextFillPath(ctx)
     }
 
-    //the line offset on the staff of this note from middle C
+    //the space offset on the staff of this note from middle C
     private func offsetFromC(note : NotePresentation) -> Int {
         var offset = 0
         switch (note.name) {
@@ -93,7 +93,7 @@ class StaffView : UIView {
         return offset + octaveOffset
     }
     
-    private func renderObject(ctx : CGContext, object : StaffObject, key : KeySignature, xPos : CGFloat, middleCPos : CGFloat) {
+    private func renderObject(ctx : CGContext, object : StaffObject, key : KeySignature, xPos : CGFloat, middleCPos : CGFloat, lineRange : (Int, Int)) {
         var accidental = ACCIDENTAL_NONE
         var presentation : NotePresentation?
         
@@ -111,7 +111,7 @@ class StaffView : UIView {
         
         let offsetLines = self.offsetFromC(presentation!)
 
-        for var index = -8; index < 20; index++ {
+        for var index = -20; index < 20; index++ {
             let ypos : CGFloat = middleCPos + CGFloat(index) * lineSpace/2
             let noteWidth = 2 * lineSpace
             if index == offsetLines {
@@ -124,7 +124,8 @@ class StaffView : UIView {
             }
             // partially draw in any missing ledger lines for the note if its above or below the 5 staff lines
             if index % 2 == 0 {
-                if (index <= 0 && index >= offsetLines) || (index > 0 && index <= offsetLines) {
+                if (offsetLines > lineRange.1 && index <= offsetLines && index > lineRange.1) ||
+                    (offsetLines < lineRange.0 && index >= offsetLines && index < lineRange.0) {
                     CGContextMoveToPoint(ctx, xPos - 4, ypos)
                     CGContextAddLineToPoint(ctx, xPos + noteWidth + 4, ypos)
                     CGContextStrokePath(ctx)
@@ -143,12 +144,13 @@ class StaffView : UIView {
         let bassRange = abs(hiLo.0 - MIDDLE_C)
         let clefToShow = trebleRange >= bassRange ? STAFF_TREBLE : STAFF_BASE
         
-        //draw staff lines
+        //set the context to (0,0) at bottom left
         var ctx = UIGraphicsGetCurrentContext()
         var transform : CGAffineTransform = CGAffineTransformMakeTranslation(0.0, rect.height)
         transform = CGAffineTransformScale(transform, 1.0, -1.0) //switch origin to bottom left since images render upside down otherwise
         CGContextConcatCTM(ctx, transform)
 
+        //draw staff lines
         let centerLine : CGFloat = rect.height / 2.0
         var xPos : CGFloat = 10.0
         var middleCPos :CGFloat = 0
@@ -163,28 +165,30 @@ class StaffView : UIView {
                 CGContextMoveToPoint(ctx, xPos, rowAt)
                 CGContextAddLineToPoint(ctx, rect.width - xPos, rowAt)
             }
-            middleCPos = clefToShow == STAFF_TREBLE ? (CGFloat(midLine - 6) * lineSpace) + centerLine : (CGFloat(midLine + 6) * lineSpace) + centerLine
+            middleCPos = clefToShow == STAFF_TREBLE ? (CGFloat(midLine - 6) * lineSpace) + centerLine : (CGFloat(6 - midLine) * lineSpace) + centerLine
         }
+        
         CGContextStrokePath(ctx)
         
         // draw the clef
-        let clefHeight : CGFloat = 6 * lineSpace + lineSpace/1.5
+        let clefHeight : CGFloat = clefToShow == STAFF_TREBLE ? 6 * lineSpace + lineSpace/1.5 : 4.5 * lineSpace
         let clefWidth = clefHeight / 2.0
         var clefImage : UIImage = clefToShow == STAFF_TREBLE ? UIImage(named: "treble_clef.png")! : UIImage(named: "bass_clef.png")!
-        var clefOffset  : CGFloat = clefToShow == STAFF_TREBLE ? CGFloat(middleCPos - lineSpace/2) : 24
+        var clefOffset  : CGFloat = clefToShow == STAFF_TREBLE ? CGFloat(middleCPos - lineSpace/2) : CGFloat(middleCPos - lineSpace * 5)
         let clefRect = CGRect(x: xPos, y: clefOffset, width: clefWidth, height: clefHeight)
         CGContextDrawImage(ctx, clefRect, clefImage.CGImage)
         xPos += clefWidth
         xPos += 24
         
         //draw the key signature
+        let lineRange : (Int, Int) = clefToShow == STAFF_TREBLE ? (2, 10) : (-10, -2)
         let key = SelectedKeys.getSelectedKey()
         let (sharp, accidentals) = key.getAccidentals(clefToShow)
 
         for accidental in accidentals {
             let type = sharp ? ACCIDENTAL_SHARP : ACCIDENTAL_FLAT
             let acc = Accidental(midiOffset: accidental, type: type)
-            self.renderObject(ctx, object: acc, key: key, xPos: xPos, middleCPos : middleCPos)
+            self.renderObject(ctx, object: acc, key: key, xPos: xPos, middleCPos : middleCPos, lineRange: lineRange)
             xPos += 12
         }
         xPos += 24
@@ -196,12 +200,12 @@ class StaffView : UIView {
                 if object is Chord {
                     let chord : Chord = object as Chord
                     for note in chord.notes {
-                        self.renderObject(ctx, object: note, key: key, xPos: x, middleCPos : middleCPos)
+                        self.renderObject(ctx, object: note, key: key, xPos: x, middleCPos : middleCPos, lineRange: lineRange)
                     }
                 }
                 if object is Note {
                     let note : Note = object as Note
-                    self.renderObject(ctx, object: note, key: key, xPos: x, middleCPos : middleCPos)
+                    self.renderObject(ctx, object: note, key: key, xPos: x, middleCPos : middleCPos, lineRange: lineRange)
                     
                 }
                 x += 50

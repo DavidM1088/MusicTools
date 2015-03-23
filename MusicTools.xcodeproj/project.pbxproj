@@ -140,9 +140,10 @@
 				630C6D911A9EE95E00EC5669 /* Progression.swift */,
 				630C6D8D1A9EE49200EC5669 /* Scale.swift */,
 				631E42531AA0F622007EF87D /* SelectedInstruments.swift */,
-				6333B3DF1AB2577300F13927 /* SelectedKeys.swift */,
 				631E42551AA14377007EF87D /* SelectedIntervals.swift */,
+				6333B3DF1AB2577300F13927 /* SelectedKeys.swift */,
 				633667ED1AA01B2A004D4104 /* SelectedTonics.swift */,
+				6340DDE61A9ED468002C0611 /* Staff.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -180,7 +181,6 @@
 				631E42571AA14533007EF87D /* Selectintervals.swift */,
 				6333B3DD1AB2545E00F13927 /* SelectKeys.swift */,
 				633667EA1A9FE785004D4104 /* SelectTonics.swift */,
-				6340DDE61A9ED468002C0611 /* Staff.swift */,
 				635C220C1AA5320800FFE9C3 /* StaffView.swift */,
 				6340DDC71A9ED273002C0611 /* Images.xcassets */,
 				631E42591AA16AEF007EF87D /* Images */,
