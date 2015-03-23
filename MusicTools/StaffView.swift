@@ -208,7 +208,7 @@ class StaffView : UIView {
                     self.renderObject(ctx, object: note, key: key, xPos: x, middleCPos : middleCPos, lineRange: lineRange)
                     
                 }
-                x += 50
+                x += 30
             }
         }
     }

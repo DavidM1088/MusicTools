@@ -213,48 +213,89 @@
             </objects>
             <point key="canvasLocation" x="1553" y="413"/>
         </scene>
-        <!--Root View Controller-->
-        <scene sceneID="4gh-QO-Kjk">
+        <!--Identify Cadences-->
+        <scene sceneID="Bi6-tz-YkA">
             <objects>
-                <tableViewController id="dQR-e9-oYX" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="RLO-Tc-gCm">
+                <viewController id="sCe-3M-O7j" customClass="IdentifyCadences" customModule="MusicTools" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xes-7N-rgh"/>
+                        <viewControllerLayoutGuide type="bottom" id="1PC-e5-MFC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="h9u-XQ-RGk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wV3-2T-4WP">
+                                <rect key="frame" x="16" y="153" width="66" height="30"/>
+                                <state key="normal" title="Play Next">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextClicked:" destination="sCe-3M-O7j" eventType="touchUpInside" id="bFS-uh-0bb"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xQI-y4-fcN" customClass="StaffView" customModule="MusicTools" customModuleProvider="target">
+                                <rect key="frame" x="16" y="276" width="387" height="192"/>
+                                <color key="backgroundColor" red="0.039215686270000001" green="0.37254901959999998" blue="0.99215686270000003" alpha="0.12" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xfk-bm-9Bj">
+                                <rect key="frame" x="16" y="184" width="142" height="30"/>
+                                <state key="normal" title="Play Chords in Scale">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="scaleClicked:" destination="sCe-3M-O7j" eventType="touchUpInside" id="eaO-AJ-UWb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIe-dV-0Ar">
+                                <rect key="frame" x="16" y="222" width="103" height="30"/>
+                                <state key="normal" title="Play Cadences">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cadencesClicked:" destination="sCe-3M-O7j" eventType="touchUpInside" id="pbk-1t-6km"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Inversions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBi-r3-3X1">
+                                <rect key="frame" x="16" y="87" width="78" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4cP-FU-FTO">
+                                <rect key="frame" x="130" y="82" width="51" height="31"/>
+                            </switch>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="wGW-hg-7BJ">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wGW-hg-7BJ" id="N0p-gJ-t6W">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="dQR-e9-oYX" id="RWh-36-kJ9"/>
-                            <outlet property="delegate" destination="dQR-e9-oYX" id="iw2-ox-zmy"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="K9F-qN-wsy"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="21z-sO-jL6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xWj-am-B6A"/>
+                    <connections>
+                        <outlet property="switchInversions" destination="4cP-FU-FTO" id="Uza-a8-ASz"/>
+                        <outlet property="uiViewStaff" destination="xQI-y4-fcN" id="OKF-1A-9NW"/>
+                        <segue destination="x65-WG-dbt" kind="show" identifier="segueToSettings" id="XOs-Fz-Kcf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mes-BU-M8o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1570" y="1056"/>
+            <point key="canvasLocation" x="1553" y="1089"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Cadences-->
         <scene sceneID="W25-VG-ev6">
             <objects>
                 <navigationController id="w0e-Ff-fJT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Cadences" image="second" id="ALm-LJ-FqJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SBE-p5-wrP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="dQR-e9-oYX" kind="relationship" relationship="rootViewController" id="g48-X4-2Az"/>
+                        <segue destination="sCe-3M-O7j" kind="relationship" relationship="rootViewController" id="r6X-2c-C83"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xPR-qw-dp6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="1056"/>
+            <point key="canvasLocation" x="750" y="1076"/>
         </scene>
         <!--Identify Intervals Settings-->
         <scene sceneID="WKC-xo-shI">
@@ -347,7 +388,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gsb-oL-v6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2238" y="1108"/>
+            <point key="canvasLocation" x="2672" y="1454"/>
         </scene>
         <!--Select Tonics-->
         <scene sceneID="CwO-bE-zhv">
@@ -450,6 +491,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="XXx-8J-Hoq" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="w0e-Ff-fJT" kind="relationship" relationship="viewControllers" id="KXX-0B-YO3"/>
                         <segue destination="0ap-wA-6LX" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                     </connections>
                 </tabBarController>
@@ -502,6 +544,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cew-ZF-W5H"/>
+        <segue reference="XOs-Fz-Kcf"/>
     </inferredMetricsTieBreakers>
 </document>

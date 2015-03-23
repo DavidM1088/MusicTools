@@ -40,7 +40,7 @@ class IdentifyIntervals: UIViewController {
         stepperOctave.stepValue = 1
         self.btnRepeatClicked.enabled = false
         self.lblIntervalAnswer.hidden = true
-        println("intervals loaded")
+        println("intervals loaded Sunday..")
     }
     
     override func didReceiveMemoryWarning() {

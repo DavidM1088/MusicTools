@@ -42,6 +42,7 @@
 		6389D6FD1AAA9F3E00E81FB7 /* sharp.png in Resources */ = {isa = PBXBuildFile; fileRef = 6389D6FC1AAA9F3E00E81FB7 /* sharp.png */; };
 		6389D6FF1AAAA1C100E81FB7 /* flat.png in Resources */ = {isa = PBXBuildFile; fileRef = 6389D6FE1AAAA1C100E81FB7 /* flat.png */; };
 		6389D7011AAAA1CE00E81FB7 /* natural.png in Resources */ = {isa = PBXBuildFile; fileRef = 6389D7001AAAA1CE00E81FB7 /* natural.png */; };
+		63ABB6B11ABFCC82004CB121 /* IdentifyCadences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ABB6B01ABFCC82004CB121 /* IdentifyCadences.swift */; };
 		63D490ED1AAEBD6300E8BFE8 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D490EC1AAEBD6200E8BFE8 /* GraphView.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		6389D6FC1AAA9F3E00E81FB7 /* sharp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharp.png; sourceTree = "<group>"; };
 		6389D6FE1AAAA1C100E81FB7 /* flat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flat.png; sourceTree = "<group>"; };
 		6389D7001AAAA1CE00E81FB7 /* natural.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = natural.png; sourceTree = "<group>"; };
+		63ABB6B01ABFCC82004CB121 /* IdentifyCadences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IdentifyCadences.swift; path = ../IdentifyCadences.swift; sourceTree = "<group>"; };
 		63D490EC1AAEBD6200E8BFE8 /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,24 +171,25 @@
 		6340DDBB1A9ED272002C0611 /* MusicTools */ = {
 			isa = PBXGroup;
 			children = (
-				633667E61A9FA8F9004D4104 /* Notes.rtf */,
 				6340DDBE1A9ED273002C0611 /* AppDelegate.swift */,
 				630C6D891A9EE21500EC5669 /* AudioEngine.swift */,
 				63D490EC1AAEBD6200E8BFE8 /* GraphView.swift */,
 				630C6D8B1A9EE35300EC5669 /* IdentifyChordChanges.swift */,
 				633667E41A9F9F99004D4104 /* IdentifyIntervals.swift */,
+				63ABB6B01ABFCC82004CB121 /* IdentifyCadences.swift */,
 				633667E81A9FAB6C004D4104 /* IdentifyIntervalsSettings.swift */,
+				631E42591AA16AEF007EF87D /* Images */,
+				6340DDC71A9ED273002C0611 /* Images.xcassets */,
+				6340DDC91A9ED273002C0611 /* LaunchScreen.xib */,
 				635C220A1AA18BA200FFE9C3 /* Logger.swift */,
+				6340DDC41A9ED273002C0611 /* Main.storyboard */,
+				633667EC1AA01A71004D4104 /* Model */,
+				633667E61A9FA8F9004D4104 /* Notes.rtf */,
 				631E42511AA0EF60007EF87D /* SelectInstrument.swift */,
 				631E42571AA14533007EF87D /* Selectintervals.swift */,
 				6333B3DD1AB2545E00F13927 /* SelectKeys.swift */,
 				633667EA1A9FE785004D4104 /* SelectTonics.swift */,
 				635C220C1AA5320800FFE9C3 /* StaffView.swift */,
-				6340DDC71A9ED273002C0611 /* Images.xcassets */,
-				631E42591AA16AEF007EF87D /* Images */,
-				6340DDC91A9ED273002C0611 /* LaunchScreen.xib */,
-				6340DDC41A9ED273002C0611 /* Main.storyboard */,
-				633667EC1AA01A71004D4104 /* Model */,
 				6340DDBC1A9ED273002C0611 /* Supporting Files */,
 			);
 			path = MusicTools;
@@ -347,6 +350,7 @@
 				6340DDBF1A9ED273002C0611 /* AppDelegate.swift in Sources */,
 				6340DDE71A9ED468002C0611 /* Staff.swift in Sources */,
 				631E42521AA0EF60007EF87D /* SelectInstrument.swift in Sources */,
+				63ABB6B11ABFCC82004CB121 /* IdentifyCadences.swift in Sources */,
 				633667E91A9FAB6C004D4104 /* IdentifyIntervalsSettings.swift in Sources */,
 				630C6D8E1A9EE49200EC5669 /* Scale.swift in Sources */,
 				630C6D881A9EDC9100EC5669 /* Instrument.swift in Sources */,
