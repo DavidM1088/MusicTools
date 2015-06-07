@@ -11,8 +11,12 @@ class Chord  : StaffObject {
     var notes : [Note] = []
     
     init(noteValues : [Int]) {
+        //ensure the notes are ordered lowest to highest
+        let sortedValues = sorted(noteValues, { (s1: Int, s2: Int) -> Bool in
+            return s1 < s2
+        })
         for var i=0; i<noteValues.count; i++ {
-            self.notes.append(Note(noteValue: noteValues[i]))
+            self.notes.append(Note(noteValue: sortedValues[i]))
         }
     }
     
@@ -39,17 +43,18 @@ class Chord  : StaffObject {
         }
     }
     
-    //use voice leading to move from chord1 to chord 2
+    //return the best inversion of chord 2 using voice leading to move from chord1 to chord 2
     class func voiceLead(chord1 : Chord, chord2 : Chord) -> Chord {
+        println("voice_lead \(chord1.toString()) to: \(chord2.toString())")
         var candidates :[Chord] = []
         var candidateDiffs :[Int] = []
         var ctr = 0
         // generate all chord transposes near the first chord
-        var candidate : Chord = Chord.incrementChord(chord2, incr: -12)
-        while ctr < 2 * chord1.notes.count {
+        var candidate : Chord = Chord.incrementChord(chord2, incr: -24)
+        while ctr < 4 * chord1.notes.count {
             candidates.append(candidate)
             candidateDiffs.append(Chord.chordDifference(candidate, chord2: chord1))
-            //println("cand \(candidate.toString()) diff: \(candidateDiffs[ctr])")
+            println("cand \(candidate.toString()) diff: \(candidateDiffs[ctr])")
             candidate = Chord.transpose(candidate)
             ctr++
         }
@@ -65,6 +70,28 @@ class Chord  : StaffObject {
             }
         }
         return candidates[lowest]
+    }
+    
+    //make a random bigger size chord using just the notes of the input chord
+    class func expandChord(chordIn : Chord, size : Int) -> Chord {
+        let baseNotes = chordIn.notes
+        
+        //make a new random chord from the notes we can use
+        //var notesInChord = 3 + Int(rand()) % 4 //minimum of 3 notes
+        let notesInChord = size
+        var notes = [Int]()
+        
+        while notes.count < notesInChord {
+            let octave = Int(rand()) % 2
+            let noteIndex = Int(rand()) % baseNotes.count
+            let noteValue = baseNotes[noteIndex].noteValue - (octave * 12)
+            if (contains(notes, noteValue)) {
+                continue;
+            }
+            notes.append(noteValue)
+        }
+        var chord = Chord(noteValues: notes)
+        return chord
     }
     
     //return a chord adjusted up or down from the given chord by an increment
@@ -115,54 +142,6 @@ class Chord  : StaffObject {
         
     }
     
-    /*
-    // write a sequence of bass note, chord, bass note, chord
-    func alternateBass() -> [Sound] {
-        var sounds : [Sound] = [Sound]()
-        var bassNote : Note = Note(note: notes[0] - 12, duration: durations[0])
-        sounds.append(bassNote)
-        let chord : Chord = Chord(n: self.notes)
-        sounds.append(chord)
-        
-        bassNote = Note(note: notes[0] - 12 + 7, duration: durations[0])
-        sounds.append(bassNote)
-        sounds.append(chord)
-        return sounds
-    }
-    
-    func waltzBass() -> [Sound] {
-        var sounds : [Sound] = [Sound]()
-        var bassNote : Note = Note(note: self.notes[0] - 12, duration: durations[0])
-        sounds.append(bassNote)
-        let chord : Chord = Chord(n: self.notes)
-        sounds.append(chord)
-        sounds.append(chord)
-        return sounds
-    }
-    
-    func albertiBass() -> [Sound] {
-        var sounds : [Sound] = [Sound]()
-        var bassNote : Note = Note(note: notes[0], duration: durations[0])
-        var topNote : Note = Note(note: notes[2], duration: durations[0])
-        var middleNote : Note = Note(note: notes[1], duration: durations[0])
-        sounds.append(bassNote)
-        sounds.append(topNote)
-        sounds.append(middleNote)
-        sounds.append(topNote)
-        return sounds
-    }
-    
-    func blockBass() -> [Sound] {
-        var sounds : [Sound] = [Sound]()
-        var bassNote : Note = Note(note: notes[0], duration: durations[0])
-        var topNote : Note = Note(note: notes[2], duration: durations[0])
-        var middleNote : Note = Note(note: notes[1], duration: durations[0])
-        sounds.append(self)
-        return sounds
-    }
-
-    
-*/
 }
 
     

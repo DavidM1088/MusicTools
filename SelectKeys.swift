@@ -15,7 +15,7 @@ class SelectKeys: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("key") as UITableViewCell
+        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("key") as! UITableViewCell
         cell.textLabel?.text = self.keys.keys[indexPath.row].getName()
         
         if indexPath.row == self.keys.selected {

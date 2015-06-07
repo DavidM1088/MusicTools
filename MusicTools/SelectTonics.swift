@@ -13,7 +13,7 @@ class SelectTonics: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("keyId") as UITableViewCell
+        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("keyId") as! UITableViewCell
         cell.textLabel?.text = self.selectedTonics.selectedNoteNames[indexPath.row]
         if self.selectedTonics.selected[indexPath.row] {
             cell.accessoryType = .Checkmark

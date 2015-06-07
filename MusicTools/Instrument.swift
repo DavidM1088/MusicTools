@@ -24,11 +24,11 @@ class Instrument {
     
     func play(object:StaffObject) {
         if object is Note {
-            let note = object as Note
+            let note = object as! Note
             playNote(note.noteValue)
         }
         if object is Chord {
-            let chord = object as Chord
+            let chord = object as! Chord
             for note in chord.notes {
                 playNote(note.noteValue)
             }
@@ -40,11 +40,11 @@ class Instrument {
     
     func stop(object: StaffObject) {
         if object is Note {
-            let note = object as Note
+            let note = object as! Note
             stopNote(note.noteValue)
         }
         if object is Chord {
-            let chord = object as Chord
+            let chord = object as! Chord
             for note in chord.notes {
                 stopNote(note.noteValue)
             }

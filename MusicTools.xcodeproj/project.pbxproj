@@ -44,6 +44,7 @@
 		6389D7011AAAA1CE00E81FB7 /* natural.png in Resources */ = {isa = PBXBuildFile; fileRef = 6389D7001AAAA1CE00E81FB7 /* natural.png */; };
 		63ABB6B11ABFCC82004CB121 /* IdentifyCadences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ABB6B01ABFCC82004CB121 /* IdentifyCadences.swift */; };
 		63D490ED1AAEBD6300E8BFE8 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D490EC1AAEBD6200E8BFE8 /* GraphView.swift */; };
+		63DA408C1B2259060026F279 /* bass_clef1.png in Resources */ = {isa = PBXBuildFile; fileRef = 63DA408B1B2259060026F279 /* bass_clef1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		6389D7001AAAA1CE00E81FB7 /* natural.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = natural.png; sourceTree = "<group>"; };
 		63ABB6B01ABFCC82004CB121 /* IdentifyCadences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IdentifyCadences.swift; path = ../IdentifyCadences.swift; sourceTree = "<group>"; };
 		63D490EC1AAEBD6200E8BFE8 /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		63DA408B1B2259060026F279 /* bass_clef1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bass_clef1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			children = (
 				6333B3E11AB2B3B900F13927 /* bass_clef.png */,
 				6389D7001AAAA1CE00E81FB7 /* natural.png */,
+				63DA408B1B2259060026F279 /* bass_clef1.png */,
 				6389D6FE1AAAA1C100E81FB7 /* flat.png */,
 				6389D6FC1AAA9F3E00E81FB7 /* sharp.png */,
 				6389D6FA1AA92F2200E81FB7 /* treble_clef.png */,
@@ -270,6 +273,7 @@
 				TargetAttributes = {
 					6340DDB81A9ED272002C0611 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 4MFY8UWD3R;
 					};
 					6340DDCF1A9ED273002C0611 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -301,6 +305,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63DA408C1B2259060026F279 /* bass_clef1.png in Resources */,
 				630C6D901A9EE5B500EC5669 /* GeneralUser_GS_MuseScore.sf2 in Resources */,
 				6389D7011AAAA1CE00E81FB7 /* natural.png in Resources */,
 				6340DDC61A9ED273002C0611 /* Main.storyboard in Resources */,
@@ -476,9 +481,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MusicTools/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -486,9 +494,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MusicTools/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

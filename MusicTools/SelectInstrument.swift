@@ -37,11 +37,11 @@ class SelectInstrument: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("instrument") as UITableViewCell
+        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("instrument") as! UITableViewCell
         cell.textLabel?.text = self.instruments.instruments[indexPath.row].name
 
         //store the midi id in the button title so we can retrieve the midi id on button push
-        var btnPlay : UIButton = cell.viewWithTag(10) as UIButton!
+        var btnPlay : UIButton = cell.viewWithTag(10) as! UIButton!
         var midiId = "\(self.instruments.instruments[indexPath.row].id)"
         btnPlay.setTitle(midiId, forState: UIControlState.Selected)
 

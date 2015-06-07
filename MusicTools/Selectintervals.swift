@@ -37,7 +37,7 @@ class SelectIntervals: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cellTypeId") as UITableViewCell
+        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cellTypeId") as! UITableViewCell
         cell.textLabel?.text = self.selectedIntervals.intervals[indexPath.row].name
         if self.selectedIntervals.selected[indexPath.row] {
             cell.accessoryType = .Checkmark
@@ -45,7 +45,7 @@ class SelectIntervals: UITableViewController {
         else {
             cell.accessoryType = .None
         }
-        var btnPlay : UIButton = cell.viewWithTag(10) as UIButton!
+        var btnPlay : UIButton = cell.viewWithTag(10) as! UIButton!
         var intervalRange = "\(self.selectedIntervals.intervals[indexPath.row].interval)"
         btnPlay.setTitle(intervalRange, forState: UIControlState.Selected)
         return cell

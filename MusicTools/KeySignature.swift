@@ -29,14 +29,18 @@ class KeySignature {
         var accidental = cMajorPres.accidental
         return NotePresentation(name: noteName, octave: octave, accidental: accidental)
     }
+
+    //return the accidental type (sharp, flat) of this key
+    func getAccidentalType() -> Int {
+        if self.sharps > 0 {return ACCIDENTAL_SHARP} else {return ACCIDENTAL_FLAT}
+    }
     
     //return the list of accidentals as midi values
-    func getAccidentals(staffType : Int) -> (Bool, [Int]) {
+    func getAccidentals(staffType : Int) -> [Int] {
         var list : [Int] = []
-        let sharps = self.sharps > 0
         let baseMidi = staffType == STAFF_TREBLE ? MIDDLE_C : MIDDLE_C - 2*12
         
-        if sharps {
+        if self.sharps > 0 {
             for var i=0; i<self.sharps; i++ {
                 switch (i) {
                 case 0: list.append(baseMidi + 12 + 5)
@@ -64,7 +68,7 @@ class KeySignature {
                 }
             }
         }
-        return (sharps, list)
+        return list
     }
     
 }

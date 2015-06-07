@@ -44,18 +44,30 @@ class IdentifyCadences: UIViewController {
         var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
         let voice : Voice = Voice(instr: inst1)
         staff.addVoice(voice)
-        var chord = Chord(noteValues: [60, 64, 67])
-        voice.add(chord)
-        chord = Chord(noteValues: [60, 65, 69])
-        voice.add(chord)
-        chord = Chord(noteValues: [59, 62, 67])
-        voice.add(chord)
-        chord = Chord(noteValues: [55, 60, 64])
-        voice.add(chord)
+        
+        //figure out the notes we can use at this root offset in the scale
+        let chordRoots = Scale(type: SCALE_MAJOR).offsets
+        let rootNote = chordRoots[Int(rand()) % chordRoots.count]
+        var base = MIDDLE_C + 5
+        let tonicChord:Chord = Chord(root: base, type: CHORD_MAJOR)
+        voice.add(tonicChord)
+        
+        var chType: Int = Scale.chordTypeAtPosition(rootNote)
+        let baseChord:Chord = Chord(root: base + rootNote, type: chType)
+        voice.add(baseChord)
+        
+        let expandedSize = 4
+        let expandedChord = Chord.expandChord(baseChord, size: expandedSize)
+        voice.add(expandedChord)
+        
+        let expandedTonic = Chord.expandChord(tonicChord, size: expandedSize)
+        let leadedTonic = Chord.voiceLead(expandedChord, chord2: expandedTonic)
+        voice.add(leadedTonic)
+        voice.add(expandedTonic)
         voice.add(Rest())
         
         staff.play()
-        self.uiViewStaff.setStaff(staff, staffMode: STAFF_SINGLE_STAFF)
+        self.uiViewStaff.setStaff(staff, staffMode: STAFF_DOUBLE_STAFF)
         self.uiViewStaff.setNeedsDisplay()
     }
 

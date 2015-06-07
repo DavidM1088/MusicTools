@@ -11,7 +11,7 @@ class MidiInstrument {
 
 class SelectedInstruments {
 
-    let instruments : [MidiInstrument]
+    var instruments : [MidiInstrument]
     var selected : Int
     
     init() {

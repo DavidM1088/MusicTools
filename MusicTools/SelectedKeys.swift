@@ -2,7 +2,7 @@ import Foundation
 
 class SelectedKeys {
     
-    let keys : [KeySignature]
+    var keys : [KeySignature]
     var selected : Int
     
     init() {
