@@ -60,7 +60,7 @@ class IdentifyChordChanges: UIViewController {
     @IBAction func btnPlayClicked(sender: AnyObject) {
         var staff = self.getStaff()
         var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
-        let voice1 : Voice = Voice(instr: inst1)
+        let voice1 : Voice = Voice(instr: inst1, clef: CLEF_AUTO)
         staff.addVoice(voice1)
         //let voice2 : Voice = Voice(instr: inst1)
         //staff.addVoice(voice2)
@@ -86,8 +86,8 @@ class IdentifyChordChanges: UIViewController {
         var staff = self.getStaff()
         var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
         var inst2 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
-        let voice1 : Voice = Voice(instr: inst1)
-        let voice2 : Voice = Voice(instr: inst2)
+        let voice1 : Voice = Voice(instr: inst1, clef: CLEF_AUTO)
+        let voice2 : Voice = Voice(instr: inst2, clef: CLEF_AUTO)
         staff.addVoice(voice1)
         staff.addVoice(voice2)
         let base : Int = 64 - 12

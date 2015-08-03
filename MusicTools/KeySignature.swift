@@ -7,12 +7,14 @@ class KeySignature {
     private var flats : Int = 0
     private var root : String = ""
     private var type : Int = 0
+    public var rootNote : Int = 0
     
-    init(root : String, type : Int, sharps : Int, flats : Int) {
+    init(root : String, type : Int, sharps : Int, flats : Int, rootNote : Int) {
         self.root = root
         self.type = type
         self.sharps = sharps
         self.flats = flats
+        self.rootNote = rootNote
     }
     
     func getName() -> String {
@@ -38,7 +40,7 @@ class KeySignature {
     //return the list of accidentals as midi values
     func getAccidentals(staffType : Int) -> [Int] {
         var list : [Int] = []
-        let baseMidi = staffType == STAFF_TREBLE ? MIDDLE_C : MIDDLE_C - 2*12
+        let baseMidi = staffType == CLEF_TREBLE ? MIDDLE_C : MIDDLE_C - 2*12
         
         if self.sharps > 0 {
             for var i=0; i<self.sharps; i++ {

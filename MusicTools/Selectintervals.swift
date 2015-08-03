@@ -26,7 +26,7 @@ class SelectIntervals: UITableViewController {
         let id :String = sender.titleForState(UIControlState.Selected)!
         let intervalRange :Int = id.toInt()!
         var instr = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
-        let voice1 : Voice = Voice(instr: instr)
+        let voice1 : Voice = Voice(instr: instr, clef: CLEF_AUTO)
         var staff = getStaff()
         staff.addVoice(voice1)
         var root = 64

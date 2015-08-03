@@ -17,6 +17,8 @@ class IdentifyCadences: UIViewController {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .Plain, target: self, action: Selector("settings"))
         println("cadences loaded Sunday..")
+        let time = UInt32(NSDate().timeIntervalSinceReferenceDate)
+        srand(time)
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,39 +44,72 @@ class IdentifyCadences: UIViewController {
     @IBAction func nextClicked(sender: AnyObject) {
         var staff = self.getStaff()
         var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
-        let voice : Voice = Voice(instr: inst1)
-        staff.addVoice(voice)
+        let voiceTreble : Voice = Voice(instr: inst1, clef: CLEF_TREBLE)
+        let voiceBass : Voice = Voice(instr: inst1, clef: CLEF_BASS)
+        staff.addVoice(voiceTreble)
+        staff.addVoice(voiceBass)
         
         //figure out the notes we can use at this root offset in the scale
-        let chordRoots = Scale(type: SCALE_MAJOR).offsets
-        let rootNote = chordRoots[Int(rand()) % chordRoots.count]
-        var base = MIDDLE_C + 5
+        let scaleOffsets = Scale(type: SCALE_MAJOR).offsets
+        let key = SelectedKeys.getSelectedKey()
+
+        var base = key.rootNote
+        
         let tonicChord:Chord = Chord(root: base, type: CHORD_MAJOR)
-        voice.add(tonicChord)
+        voiceTreble.add(tonicChord)
+        //voiceBass.add(Note(noteValue: base - 24))
+        voiceBass.add(Rest())
         
-        var chType: Int = Scale.chordTypeAtPosition(rootNote)
-        let baseChord:Chord = Chord(root: base + rootNote, type: chType)
-        voice.add(baseChord)
+        var scaleNote = scaleOffsets[Int(rand()) % scaleOffsets.count]
+        var chType: Int = Scale.chordTypeAtPosition(scaleNote)
+        var scaleChord:Chord = Chord(root: base + scaleNote, type: chType)
+        if scaleNote  > 5 {
+            scaleChord = Chord.incrementChord(scaleChord, incr: -12)
+        }
+        voiceTreble.add(scaleChord)
+        voiceBass.add(Rest())
         
-        let expandedSize = 4
-        let expandedChord = Chord.expandChord(baseChord, size: expandedSize)
-        voice.add(expandedChord)
+        let expandedChordTreble = Chord.expandChord(scaleChord, chordSize: 3, lo: MIDDLE_C, hi: MIDDLE_C + 24)
+        voiceTreble.add(expandedChordTreble)
+        var expandedChordBass = Chord.expandChord(scaleChord, chordSize: 2, lo: MIDDLE_C + 5, hi: MIDDLE_C + 21)
+        expandedChordBass = Chord.incrementChord(expandedChordBass, incr: -24)
+        voiceBass.add(expandedChordBass)
         
-        let expandedTonic = Chord.expandChord(tonicChord, size: expandedSize)
-        let leadedTonic = Chord.voiceLead(expandedChord, chord2: expandedTonic)
-        voice.add(leadedTonic)
-        voice.add(expandedTonic)
-        voice.add(Rest())
+        /*let expandedTonic = Chord.expandChord(tonicChord, size: 3)
+        let leadedTonic = Chord.voiceLead(expandedChordTreble, chord2: expandedTonic)
+        voiceTreble.add(leadedTonic)
+        voiceTreble.add(expandedTonic)
+        voiceTreble.add(Rest())*/
         
         staff.play()
-        self.uiViewStaff.setStaff(staff, staffMode: STAFF_DOUBLE_STAFF)
+        self.uiViewStaff.setStaff(staff)
+        self.uiViewStaff.setNeedsDisplay()
+    }
+    
+    @IBAction func nextClicked_test(sender: AnyObject) {
+        var staff = self.getStaff()
+        var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
+        let voice1 : Voice = Voice(instr: inst1, clef: CLEF_TREBLE)
+        let voice2 : Voice = Voice(instr: inst1, clef: CLEF_BASS)
+        staff.addVoice(voice1)
+        staff.addVoice(voice2)
+        
+        voice1.add(Note(noteValue: MIDDLE_C + 0))
+        voice1.add(Note(noteValue: MIDDLE_C - 3))
+        voice2.add(Note(noteValue: MIDDLE_C + 0))
+        voice2.add(Note(noteValue: MIDDLE_C + 4)) 
+        //voice1.add(Rest())
+        voice2.add(Rest())
+        
+        staff.play()
+        self.uiViewStaff.setStaff(staff)
         self.uiViewStaff.setNeedsDisplay()
     }
 
     @IBAction func scaleClicked(sender: AnyObject) {
         var staff = self.getStaff()
         var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
-        let voice1 : Voice = Voice(instr: inst1)
+        let voice1 : Voice = Voice(instr: inst1, clef: CLEF_AUTO)
         staff.addVoice(voice1)
         //let voice2 : Voice = Voice(instr: inst1)
         //staff.addVoice(voice2)
@@ -92,7 +127,7 @@ class IdentifyCadences: UIViewController {
             base += 12
         }
         staff.play()
-        self.uiViewStaff.setStaff(staff, staffMode: STAFF_SINGLE_STAFF)
+        self.uiViewStaff.setStaff(staff)
         self.uiViewStaff.setNeedsDisplay()
     }
     
@@ -100,8 +135,8 @@ class IdentifyCadences: UIViewController {
         var staff = self.getStaff()
         var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
         var inst2 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
-        let voice1 : Voice = Voice(instr: inst1)
-        let voice2 : Voice = Voice(instr: inst2)
+        let voice1 : Voice = Voice(instr: inst1, clef: CLEF_AUTO)
+        let voice2 : Voice = Voice(instr: inst2, clef: CLEF_AUTO)
         staff.addVoice(voice1)
         staff.addVoice(voice2)
         let base : Int = 60 
@@ -132,7 +167,7 @@ class IdentifyCadences: UIViewController {
             }
         }
         staff.play()
-        self.uiViewStaff.setStaff(staff, staffMode: STAFF_SINGLE_STAFF)
+        self.uiViewStaff.setStaff(staff)
         self.uiViewStaff.setNeedsDisplay()
     }
 }

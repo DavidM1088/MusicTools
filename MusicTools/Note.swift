@@ -7,7 +7,7 @@ let ACCIDENTAL_NATURAL = 3
 
 let MIDDLE_C = 60
 
-// describes how the note is presented on a music staff (usually in a given key)
+// describes how the note is presented on a music staff in a given key
 class NotePresentation {
     var name : String
     var octave : Int
@@ -104,7 +104,7 @@ class Note : Duration {
         let octave = midiNoteValue / Int(12) - 1
         var accidental = ACCIDENTAL_NONE
         
-        if !Piano.isWhiteNote(noteOffset) {
+        /*if !Piano.isWhiteNote(noteOffset) {
             if useFlat {
                 accidental = ACCIDENTAL_FLAT
                 noteOffset += 1 //e.g. F# becomes Gb
@@ -112,7 +112,7 @@ class Note : Duration {
             else {
                 accidental = ACCIDENTAL_SHARP
             }
-        }
+        }*/
         
         var name = ""
         switch (noteOffset) {

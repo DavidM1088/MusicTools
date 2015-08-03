@@ -62,7 +62,7 @@ class Chord  : StaffObject {
         var lowestDiff = 9999
         var lowest = 0
         let hiLo: Int = Int(rand()) % 2
-        //if 2 candidates have the same score randomize the up or down direction (otherewise a progession just keeps going down..)
+        //if 2 candidates have the same score randomize the up or down direction (otherwise a progession just keeps going down..)
         for (var i=0; i<candidates.count; i++) {
             if  (hiLo == 0 && candidateDiffs[i] < lowestDiff) || (hiLo == 1 && candidateDiffs[i] <= lowestDiff) {
                 lowestDiff = candidateDiffs[i]
@@ -73,20 +73,24 @@ class Chord  : StaffObject {
     }
     
     //make a random bigger size chord using just the notes of the input chord
-    class func expandChord(chordIn : Chord, size : Int) -> Chord {
+    class func expandChord(chordIn : Chord, chordSize : Int, lo: Int, hi : Int) -> Chord {
         let baseNotes = chordIn.notes
-        
-        //make a new random chord from the notes we can use
-        //var notesInChord = 3 + Int(rand()) % 4 //minimum of 3 notes
-        let notesInChord = size
         var notes = [Int]()
+        var count = 0
         
-        while notes.count < notesInChord {
+        while notes.count < chordSize {
+            count = count + 1
+            if (count > 500) {
+                break; //avoid can't meet conditions
+            }
             let octave = Int(rand()) % 2
             let noteIndex = Int(rand()) % baseNotes.count
             let noteValue = baseNotes[noteIndex].noteValue - (octave * 12)
+            if (noteValue < lo || noteValue > hi) {
+                continue
+            }
             if (contains(notes, noteValue)) {
-                continue;
+                continue
             }
             notes.append(noteValue)
         }

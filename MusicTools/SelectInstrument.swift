@@ -23,7 +23,7 @@ class SelectInstrument: UITableViewController {
         let id :String = sender.titleForState(UIControlState.Selected)!
         let midiId :Int = id.toInt()!
         let inst1 = Instrument(midiPresetId: midiId)
-        let voice1 : Voice = Voice(instr: inst1)
+        let voice1 : Voice = Voice(instr: inst1, clef: CLEF_AUTO)
         var staff = getStaff()
         staff.addVoice(voice1)
         voice1.add(Note(noteValue: 64))
