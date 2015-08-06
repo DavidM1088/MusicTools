@@ -226,8 +226,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wV3-2T-4WP">
-                                <rect key="frame" x="16" y="153" width="164" height="30"/>
-                                <state key="normal" title="Identify a random chord">
+                                <rect key="frame" x="16" y="153" width="104" height="30"/>
+                                <state key="normal" title="Next Chord">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -235,12 +235,12 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xQI-y4-fcN" customClass="StaffView" customModule="MusicTools" customModuleProvider="target">
-                                <rect key="frame" x="16" y="276" width="387" height="192"/>
+                                <rect key="frame" x="16" y="191" width="387" height="192"/>
                                 <color key="backgroundColor" red="0.039215686270000001" green="0.37254901959999998" blue="0.99215686270000003" alpha="0.12" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xfk-bm-9Bj">
-                                <rect key="frame" x="16" y="184" width="142" height="30"/>
+                                <rect key="frame" x="16" y="416" width="142" height="30"/>
                                 <state key="normal" title="Play Chords in Scale">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -249,7 +249,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIe-dV-0Ar">
-                                <rect key="frame" x="16" y="222" width="103" height="30"/>
+                                <rect key="frame" x="16" y="361" width="103" height="219"/>
                                 <state key="normal" title="Play Cadences">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -257,21 +257,47 @@
                                     <action selector="cadencesClicked:" destination="sCe-3M-O7j" eventType="touchUpInside" id="pbk-1t-6km"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Inversions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBi-r3-3X1">
-                                <rect key="frame" x="16" y="87" width="78" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3z-tw-vgi">
+                                <rect key="frame" x="239" y="157" width="387" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.50196078431372548" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4cP-FU-FTO">
-                                <rect key="frame" x="130" y="82" width="51" height="31"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Show Root Position" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjc-0c-Xqu">
+                                <rect key="frame" x="16" y="79" width="152" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Change Keys" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tiT-MT-gH8">
+                                <rect key="frame" x="16" y="118" width="103" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7a2-fn-MaH">
+                                <rect key="frame" x="185" y="74" width="51" height="31"/>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gjy-UU-wGB">
+                                <rect key="frame" x="143" y="153" width="89" height="30"/>
+                                <state key="normal" title="Show Chord">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showChord:" destination="sCe-3M-O7j" eventType="touchUpInside" id="Gct-lB-NOs"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lJo-Lr-70z">
+                                <rect key="frame" x="185" y="118" width="51" height="31"/>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="xWj-am-B6A"/>
                     <connections>
-                        <outlet property="switchInversions" destination="4cP-FU-FTO" id="Uza-a8-ASz"/>
+                        <outlet property="multipleKeys" destination="lJo-Lr-70z" id="TLA-f6-vgF"/>
+                        <outlet property="result" destination="m3z-tw-vgi" id="npq-Vl-45i"/>
+                        <outlet property="showRootPos" destination="7a2-fn-MaH" id="Bb9-gw-PCU"/>
                         <outlet property="uiViewStaff" destination="xQI-y4-fcN" id="OKF-1A-9NW"/>
                         <segue destination="x65-WG-dbt" kind="show" identifier="segueToSettings" id="XOs-Fz-Kcf"/>
                     </connections>

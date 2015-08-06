@@ -1,16 +1,28 @@
 import UIKit
 
 class IdentifyCadences: UIViewController {
-    var selectedTonics = SelectedTonics.sharedInstance
-    var selectedIntervals = SelectedIntervals.sharedInstance
-    var runningStaff : Staff?
+    private var selectedTonics = SelectedTonics.sharedInstance
+    private var selectedIntervals = SelectedIntervals.sharedInstance
+    private var runningStaff : Staff?
+    private var lastChordDescription : String
+    private var keyIndex : Int = 0
     
     @IBOutlet weak var uiViewStaff: StaffView!
     
-    @IBOutlet weak var switchInversions: UISwitch!
+    //@IBOutlet weak var switchInversions: UISwitch!
+    
+    @IBOutlet weak var result: UILabel!
+    
+    @IBOutlet weak var showRootPos: UISwitch!
+    @IBOutlet weak var multipleKeys: UISwitch!
     
     required init(coder aDecoder: NSCoder) {
+        lastChordDescription = ""
         super.init(coder: aDecoder)
+    }
+    
+    @IBAction func showChord(sender: AnyObject) {
+        result.text = lastChordDescription
     }
     
     override func viewDidLoad() {
@@ -42,47 +54,76 @@ class IdentifyCadences: UIViewController {
     }
 
     @IBAction func nextClicked(sender: AnyObject) {
+        result.text = ""
         var staff = self.getStaff()
         var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
         let voiceTreble : Voice = Voice(instr: inst1, clef: CLEF_TREBLE)
         let voiceBass : Voice = Voice(instr: inst1, clef: CLEF_BASS)
         staff.addVoice(voiceTreble)
         staff.addVoice(voiceBass)
+        var notesInChord = 3
         
         //figure out the notes we can use at this root offset in the scale
         let scaleOffsets = Scale(type: SCALE_MAJOR).offsets
-        let key = SelectedKeys.getSelectedKey()
-
+        
+        //pick a key
+        var key : KeySignature
+        if (self.multipleKeys.on) {
+            key = KeySignature.getCommonKeys()[self.keyIndex]
+            if (keyIndex < KeySignature.getCommonKeys().count - 1) {
+                keyIndex += 1
+            }
+            else {
+                keyIndex = 0
+            }
+            
+        }
+        else {
+            key = SelectedKeys.getSelectedKey()
+        }
         var base = key.rootNote
         
         let tonicChord:Chord = Chord(root: base, type: CHORD_MAJOR)
         voiceTreble.add(tonicChord)
-        //voiceBass.add(Note(noteValue: base - 24))
-        voiceBass.add(Rest())
+        voiceBass.add(Note(noteValue: base - 1 * OCTAVE_OFFSET))
         
+        // pick a random offset in the scale as the chord root
         var scaleNote = scaleOffsets[Int(rand()) % scaleOffsets.count]
         var chType: Int = Scale.chordTypeAtPosition(scaleNote)
-        var scaleChord:Chord = Chord(root: base + scaleNote, type: chType)
-        if scaleNote  > 5 {
-            scaleChord = Chord.incrementChord(scaleChord, incr: -12)
+        var trebleChord:Chord = Chord(root: base + scaleNote, type: chType)
+
+        if (self.showRootPos.on) {
+            voiceTreble.add(voiceTreble.putOnStaff(trebleChord))
+            var bassNote = base + scaleNote - 1 * OCTAVE_OFFSET
+            if (bassNote > MIDDLE_C) {
+                bassNote -= OCTAVE_OFFSET
+            }
+            voiceBass.add(Note(noteValue: bassNote))
         }
-        voiceTreble.add(scaleChord)
-        voiceBass.add(Rest())
         
-        let expandedChordTreble = Chord.expandChord(scaleChord, chordSize: 3, lo: MIDDLE_C, hi: MIDDLE_C + 24)
-        voiceTreble.add(expandedChordTreble)
-        var expandedChordBass = Chord.expandChord(scaleChord, chordSize: 2, lo: MIDDLE_C + 5, hi: MIDDLE_C + 21)
-        expandedChordBass = Chord.incrementChord(expandedChordBass, incr: -24)
-        voiceBass.add(expandedChordBass)
+        var bassChord : Chord = Chord.incrementChord(Chord(chord: trebleChord), incr: OCTAVE_OFFSET * -2)
+
+        var inversions = Int(rand()) % notesInChord
+        if (inversions > 0) {
+            for i in 0...inversions-1 {
+                trebleChord = Chord.invert(trebleChord)
+            }
+        }
         
-        /*let expandedTonic = Chord.expandChord(tonicChord, size: 3)
-        let leadedTonic = Chord.voiceLead(expandedChordTreble, chord2: expandedTonic)
-        voiceTreble.add(leadedTonic)
-        voiceTreble.add(expandedTonic)
-        voiceTreble.add(Rest())*/
+        inversions = Int(rand()) % notesInChord
+        if (inversions > 1) {
+            for i in 0...inversions-1 {
+                bassChord = Chord.invert(bassChord)
+            }
+        }
+        bassChord = Chord.removeNote(bassChord, noteNum: 1)
+
+        voiceTreble.add(voiceTreble.putOnStaff(trebleChord))
+        voiceBass.add(voiceBass.putOnStaff(bassChord))
         
+        lastChordDescription = "\(Chord.romanNumeralNotation(scaleNote))"
         staff.play()
-        self.uiViewStaff.setStaff(staff)
+        self.uiViewStaff.setStaff(staff, key: key)
         self.uiViewStaff.setNeedsDisplay()
     }
     
@@ -102,7 +143,7 @@ class IdentifyCadences: UIViewController {
         voice2.add(Rest())
         
         staff.play()
-        self.uiViewStaff.setStaff(staff)
+        self.uiViewStaff.setStaff(staff, key: SelectedKeys.getSelectedKey())
         self.uiViewStaff.setNeedsDisplay()
     }
 
@@ -127,7 +168,7 @@ class IdentifyCadences: UIViewController {
             base += 12
         }
         staff.play()
-        self.uiViewStaff.setStaff(staff)
+        self.uiViewStaff.setStaff(staff, key: SelectedKeys.getSelectedKey())
         self.uiViewStaff.setNeedsDisplay()
     }
     
@@ -149,10 +190,8 @@ class IdentifyCadences: UIViewController {
                 var chordType = Scale.chordTypeAtPosition(chordIndex)
                 //println("base \(base) index \(chordIndex) type \(chordType)")
                 var chord : Chord = Chord(root: root, type: chordType)
-                if self.switchInversions.on {
-                    if lastChord != nil {
-                        chord = Chord.voiceLead(lastChord!, chord2: chord)
-                    }
+                if lastChord != nil {
+                    chord = Chord.voiceLead(lastChord!, chord2: chord)
                 }
                 //var chordNotes : [Sound] = chord.blockBass()
                 voice1.add(Rest())
@@ -167,7 +206,7 @@ class IdentifyCadences: UIViewController {
             }
         }
         staff.play()
-        self.uiViewStaff.setStaff(staff)
+        self.uiViewStaff.setStaff(staff, key: SelectedKeys.getSelectedKey())
         self.uiViewStaff.setNeedsDisplay()
     }
 }

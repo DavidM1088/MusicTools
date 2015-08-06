@@ -10,17 +10,27 @@ let NOTE_WHOLE : Float = 1.0
 class Chord  : StaffObject {
     var notes : [Note] = []
     
-    init(noteValues : [Int]) {
+    func sortNotes() {
         //ensure the notes are ordered lowest to highest
-        let sortedValues = sorted(noteValues, { (s1: Int, s2: Int) -> Bool in
-            return s1 < s2
+        let sortedNotes = sorted(notes, { (s1: Note, s2: Note) -> Bool in
+            return s1.noteValue < s2.noteValue
         })
-        for var i=0; i<noteValues.count; i++ {
-            self.notes.append(Note(noteValue: sortedValues[i]))
+        self.notes = []
+        for var i=0; i<sortedNotes.count; i++ {
+            self.notes.append(sortedNotes[i])
         }
     }
     
+    init(noteValues : [Int]) {
+        super.init()
+        for var i=0; i<noteValues.count; i++ {
+            self.notes.append(Note(noteValue: noteValues[i]))
+        }
+        sortNotes()
+    }
+    
     init(root:Int, type:Int) {
+        super.init()
         var noteValues : [Int] = []
         if type == CHORD_MAJOR {
             noteValues = [root, root+4, root+7]
@@ -34,13 +44,16 @@ class Chord  : StaffObject {
         for noteValue in noteValues {
             notes.append(Note(noteValue : noteValue))
         }
+        sortNotes()
     }
     
     init(chord : Chord) {
-        var newNotes : [Note] = []
+        super.init()
+        notes = []
         for note in chord.notes {
-            newNotes.append(Note(note: note))
+            notes.append(Note(note: note))
         }
+        sortNotes()
     }
     
     //return the best inversion of chord 2 using voice leading to move from chord1 to chord 2
@@ -55,7 +68,7 @@ class Chord  : StaffObject {
             candidates.append(candidate)
             candidateDiffs.append(Chord.chordDifference(candidate, chord2: chord1))
             println("cand \(candidate.toString()) diff: \(candidateDiffs[ctr])")
-            candidate = Chord.transpose(candidate)
+            candidate = Chord.invert(candidate)
             ctr++
         }
         //return the transpose with the lowest score (i.e. closest to first chord)
@@ -107,7 +120,7 @@ class Chord  : StaffObject {
         return Chord(noteValues: noteValues)
     }
     
-    class func transpose(chord : Chord) -> Chord {
+    class func invert(chord : Chord) -> Chord {
         var noteValues : [Int] = []
         for (var i = 1; i < chord.notes.count; i++) {
             noteValues.append(chord.notes[i].noteValue)
@@ -118,12 +131,35 @@ class Chord  : StaffObject {
         return Chord(noteValues: noteValues)
     }
     
+    class func removeNote(chord : Chord, noteNum : Int) -> Chord {
+        var noteValues : [Int] = []
+        for (var i = 0; i < chord.notes.count; i++) {
+            if (i != noteNum) {
+                noteValues.append(chord.notes[i].noteValue)
+            }
+        }
+        return Chord(noteValues: noteValues)
+    }
+    
     class func chordDifference(chord1 : Chord, chord2 : Chord) -> Int {
         var sum = 0
         for (var i=0; i<chord1.notes.count; i++) {
             sum = abs(chord1.notes[i].noteValue - chord2.notes[i].noteValue)
         }
         return sum
+    }
+    
+    class func romanNumeralNotation(note : Int) -> String {
+        switch (note) {
+        case 0 : return "I Tonic"
+        case 2 : return "ii Minor"
+        case 4 : return "iii Minor"
+        case 5 : return "IV Subdominant"
+        case 7 : return "V Dominant"
+        case 9 : return "vi Minor"
+        case 11 : return "vii Diminished"
+        default : return "unknown"
+        }
     }
     
     func toString() -> String {
@@ -136,7 +172,7 @@ class Chord  : StaffObject {
     
     class func unitTest() {
         var c1 = Chord(noteValues : [60, 64, 67]) // C E G
-        var c2 = Chord.transpose(c1)
+        var c2 = Chord.invert(c1)
         //println("\(c1.toString()) transposed to \(c2.toString())")
         
         var c3 = Chord(noteValues : [65, 69, 72]) // F Major

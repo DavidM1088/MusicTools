@@ -69,6 +69,30 @@ class Voice {
     func isFinishedPlaying() -> Bool {
         return self.beatNum >= self.contents.count && self.lastSound == nil    }
     
+    //bring a chord requring too many ledger lines back onto the staff
+    func putOnStaff(chord : Chord) -> Chord {
+        var newChord : Chord = Chord(chord: chord)
+        let hiNote = chord.notes[chord.notes.count - 1].noteValue
+        let loNote = chord.notes[0].noteValue
+        if (self.clef == CLEF_TREBLE) {
+            if (hiNote > MIDDLE_C + 2 * OCTAVE_OFFSET - 3) {
+                newChord = Chord.incrementChord(newChord, incr: -OCTAVE_OFFSET)
+            }
+            if (loNote < MIDDLE_C) {
+                newChord = Chord.incrementChord(newChord, incr: +OCTAVE_OFFSET)
+            }
+        }
+        if (self.clef == CLEF_BASS) {
+            if (hiNote > MIDDLE_C) {
+                newChord = Chord.incrementChord(newChord, incr: -OCTAVE_OFFSET)
+            }
+            if (loNote < MIDDLE_C - 2 * OCTAVE_OFFSET + 3) {
+                newChord = Chord.incrementChord(newChord, incr: +OCTAVE_OFFSET)
+            }
+        }
+        return newChord
+    }
+    
     func play() {
         //println("beat \(self.beatNum)")
         if self.lastSound != nil {
@@ -153,5 +177,4 @@ class Staff {
     }
     
 
-    
 }

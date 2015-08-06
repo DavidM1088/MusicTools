@@ -3,7 +3,7 @@ import UIKit
 
 class StaffView : UIView {
     private var staff : Staff?
-    //private var doubleStaff : Bool
+    private var key : KeySignature?
     private let lineSpace : CGFloat = 8.0
 
     override init(frame: CGRect) {
@@ -14,9 +14,9 @@ class StaffView : UIView {
         super.init(coder: aDecoder)
     }
     
-    func setStaff(staff : Staff) {
+    func setStaff(staff : Staff, key : KeySignature) {
         self.staff = staff
-        //self.doubleStaff = doubleStaff
+        self.key = key
     }
     
     //return highest and lowest note on the staff
@@ -90,16 +90,16 @@ class StaffView : UIView {
     private func renderObject(ctx : CGContext, object : StaffObject, key : KeySignature, xPos : CGFloat, middleCPos : CGFloat, lineRange : (Int, Int)) {
         var accidental = ACCIDENTAL_NONE
         var presentation : NotePresentation?
-        
+        var sharpPresentation : Int = key.sharps > 0 ? ACCIDENTAL_SHARP : ACCIDENTAL_FLAT
         if object is Note {
             let note : Note = object as! Note
-            presentation = key.notePresentation(note.noteValue)
+            presentation = key.notePresentation(note.noteValue, sharpMode : sharpPresentation)
             accidental = presentation!.accidental
         }
         if object is Accidental {
             let acc = object as! Accidental
             accidental = acc.type
-            presentation = key.notePresentation(acc.midiOffset)
+            presentation = key.notePresentation(acc.midiOffset, sharpMode : sharpPresentation)
         }
         
         let offsetLines = self.offsetFromC(presentation!)
@@ -186,20 +186,20 @@ class StaffView : UIView {
         //draw staff lines and determine middle C position for all clefs
         var xPos : CGFloat = 10.0
         CGContextSetRGBStrokeColor(ctx, 0, 0, 0, 0.50)
-        let key = SelectedKeys.getSelectedKey()
+        //let key = SelectedKeys.getSelectedKey()
         var middleCTreble : CGFloat = 0
         var middleCBass : CGFloat = 0
         if needTrebleClef && needBassClef {
             var staffCenter = (3 * rect.height) / 4.0
-            drawStaff(ctx, centerAt: staffCenter, margin: xPos, width: rect.width, staffType: CLEF_TREBLE, keySignature: key)
+            drawStaff(ctx, centerAt: staffCenter, margin: xPos, width: rect.width, staffType: CLEF_TREBLE, keySignature: key!)
             middleCTreble = staffCenter - 3 * self.lineSpace
             staffCenter = rect.height / 4.0
-            xPos = drawStaff(ctx, centerAt: staffCenter, margin: xPos, width: rect.width, staffType: CLEF_BASS, keySignature: key)
+            xPos = drawStaff(ctx, centerAt: staffCenter, margin: xPos, width: rect.width, staffType: CLEF_BASS, keySignature: key!)
             middleCBass = staffCenter + 3 * self.lineSpace
         }
         else {
             let centerOfView : CGFloat = rect.height / 2.0
-            xPos = drawStaff(ctx, centerAt: centerOfView, margin: xPos, width: rect.width, staffType: needTrebleClef ? CLEF_TREBLE : CLEF_BASS, keySignature: key)
+            xPos = drawStaff(ctx, centerAt: centerOfView, margin: xPos, width: rect.width, staffType: needTrebleClef ? CLEF_TREBLE : CLEF_BASS, keySignature: key!)
             middleCTreble = centerOfView - 3 * self.lineSpace
             middleCBass = centerOfView + 3 * self.lineSpace
         }
@@ -215,12 +215,12 @@ class StaffView : UIView {
                 if object is Chord {
                     let chord : Chord = object as! Chord
                     for note in chord.notes {
-                        self.renderObject(ctx, object: note, key: key, xPos: x, middleCPos : middleCPos, lineRange: lineRange)
+                        self.renderObject(ctx, object: note, key: key!, xPos: x, middleCPos : middleCPos, lineRange: lineRange)
                     }
                 }
                 if object is Note {
                     let note : Note = object as! Note
-                    self.renderObject(ctx, object: note, key: key, xPos: x, middleCPos : middleCPos, lineRange: lineRange)
+                    self.renderObject(ctx, object: note, key: key!, xPos: x, middleCPos : middleCPos, lineRange: lineRange)
                     
                 }
                 x += 48

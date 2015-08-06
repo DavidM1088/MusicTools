@@ -97,7 +97,7 @@ class IdentifyIntervals: UIViewController {
         voice.add(Rest())
 
         staff.play()
-        self.uiViewStaff.setStaff(staff)
+        self.uiViewStaff.setStaff(staff, key: SelectedKeys.getSelectedKey())
         self.uiViewStaff.setNeedsDisplay()
         self.viewGraph.setNotes([note1.noteValue, note2.noteValue])
         self.viewGraph.setNeedsDisplay()

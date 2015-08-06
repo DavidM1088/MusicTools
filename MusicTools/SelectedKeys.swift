@@ -43,4 +43,8 @@ class SelectedKeys {
         return sharedInstance.keys[sharedInstance.selected]
     }
     
+    class func getKeyList() -> [KeySignature] {
+        return sharedInstance.keys
+    }
+
 }
