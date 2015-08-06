@@ -101,8 +101,6 @@ class IdentifyCadences: UIViewController {
             voiceBass.add(Note(noteValue: bassNote))
         }
         
-        var bassChord : Chord = Chord.incrementChord(Chord(chord: trebleChord), incr: OCTAVE_OFFSET * -2)
-
         var inversions = Int(rand()) % notesInChord
         if (inversions > 0) {
             for i in 0...inversions-1 {
@@ -110,14 +108,24 @@ class IdentifyCadences: UIViewController {
             }
         }
         
-        inversions = Int(rand()) % notesInChord
-        if (inversions > 1) {
+        //remove a note from the treble chord and add it to the base chord
+        let removeIndex = Int(rand()) % trebleChord.notes.count
+        let removedFromTreble = trebleChord.notes[removeIndex].noteValue
+        trebleChord = Chord.removeNote(trebleChord, noteNum: removeIndex)
+        
+        var baseNotes : [Int] = []
+        baseNotes.append(base + scaleNote - 2 * OCTAVE_OFFSET)  // add the chord root
+        baseNotes.append(removedFromTreble - 2 * OCTAVE_OFFSET) //add the note remvoed from the treble
+        var bassChord : Chord = Chord(noteValues: baseNotes)
+
+        //make the root not always the lowest bass chord note
+        inversions = Int(rand()) % baseNotes.count
+        if (inversions > 0) {
             for i in 0...inversions-1 {
                 bassChord = Chord.invert(bassChord)
             }
         }
-        bassChord = Chord.removeNote(bassChord, noteNum: 1)
-
+        
         voiceTreble.add(voiceTreble.putOnStaff(trebleChord))
         voiceBass.add(voiceBass.putOnStaff(bassChord))
         

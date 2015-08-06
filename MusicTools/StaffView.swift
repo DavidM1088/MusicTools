@@ -141,8 +141,12 @@ class StaffView : UIView {
         let middleCPos = staffType == CLEF_TREBLE ? (CGFloat(midLine - 6) * lineSpace) + centerAt : (CGFloat(6 - midLine) * lineSpace) + centerAt
 
         //draw the clef image
-        let clefHeight : CGFloat = 5 * lineSpace
-        let clefWidth = clefHeight / 2.0
+        var clefHeight : CGFloat = 5 * lineSpace
+        var clefWidth = clefHeight / 2.0
+        if (staffType == CLEF_TREBLE) {
+            clefHeight = clefHeight * 1.5
+            clefWidth = clefWidth  * 1.5
+        }
         let clefRect = CGRect(x: margin, y: centerAt - clefHeight/2, width: clefWidth, height: clefHeight)
         let clefImage : UIImage = staffType == CLEF_TREBLE ? UIImage(named: "treble_clef.png")! : UIImage(named: "bass_clef.png")!
         CGContextDrawImage(ctx, clefRect, clefImage.CGImage)
