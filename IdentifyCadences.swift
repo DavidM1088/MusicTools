@@ -9,7 +9,7 @@ class IdentifyCadences: UIViewController {
     
     @IBOutlet weak var uiViewStaff: StaffView!
     
-    //@IBOutlet weak var switchInversions: UISwitch!
+    @IBOutlet weak var fourNoteChords: UISwitch!
     
     @IBOutlet weak var result: UILabel!
     
@@ -81,18 +81,18 @@ class IdentifyCadences: UIViewController {
         else {
             key = SelectedKeys.getSelectedKey()
         }
-        var base = key.rootNote
+        var base = key.getRootNote()
         
-        let tonicChord:Chord = Chord(root: base, type: CHORD_MAJOR)
+        let tonicChord:Chord = Chord(root: base, type: CHORD_MAJOR, seventh: fourNoteChords.on)
         voiceTreble.add(tonicChord)
         voiceBass.add(Note(noteValue: base - 1 * OCTAVE_OFFSET))
         
         // pick a random offset in the scale as the chord root
         var scaleNote = scaleOffsets[Int(rand()) % scaleOffsets.count]
         var chType: Int = Scale.chordTypeAtPosition(scaleNote)
-        var trebleChord:Chord = Chord(root: base + scaleNote, type: chType)
+        var trebleChord:Chord = Chord(root: base + scaleNote, type: chType, seventh: fourNoteChords.on)
 
-        if (self.showRootPos.on) {
+        if showRootPos.on {
             voiceTreble.add(voiceTreble.putOnStaff(trebleChord))
             var bassNote = base + scaleNote - 1 * OCTAVE_OFFSET
             if (bassNote > MIDDLE_C) {
@@ -101,17 +101,18 @@ class IdentifyCadences: UIViewController {
             voiceBass.add(Note(noteValue: bassNote))
         }
         
+        //remove a non root note from the treble chord to add it to the base chord
+        let removeIndex = 1 + Int(rand()) % (trebleChord.notes.count - 1)
+        println("----------> remove index r:\(rand()) \(removeIndex)")
+        let removedFromTreble = trebleChord.notes[removeIndex].noteValue
+        trebleChord = Chord.removeNote(trebleChord, noteNum: removeIndex)
+
         var inversions = Int(rand()) % notesInChord
-        if (inversions > 0) {
+        if inversions > 0 {
             for i in 0...inversions-1 {
                 trebleChord = Chord.invert(trebleChord)
             }
         }
-        
-        //remove a note from the treble chord and add it to the base chord
-        let removeIndex = Int(rand()) % trebleChord.notes.count
-        let removedFromTreble = trebleChord.notes[removeIndex].noteValue
-        trebleChord = Chord.removeNote(trebleChord, noteNum: removeIndex)
         
         var baseNotes : [Int] = []
         baseNotes.append(base + scaleNote - 2 * OCTAVE_OFFSET)  // add the chord root
@@ -169,7 +170,7 @@ class IdentifyCadences: UIViewController {
             for offset in scale.offsets {
                 var chType: Int = Scale.chordTypeAtPosition(offset)
                 println("offset \(offset) type \(chType)")
-                let chord:Chord = Chord(root: base + offset, type: chType)
+                let chord:Chord = Chord(root: base + offset, type: chType, seventh: false)
                 voice1.add(chord)
                 //voice2.addSound(Note(note: base + offset - 12, duration : NOTE_QTR))
             }
@@ -197,7 +198,7 @@ class IdentifyCadences: UIViewController {
                 var root = base + tonic + chordIndex
                 var chordType = Scale.chordTypeAtPosition(chordIndex)
                 //println("base \(base) index \(chordIndex) type \(chordType)")
-                var chord : Chord = Chord(root: root, type: chordType)
+                var chord : Chord = Chord(root: root, type: chordType, seventh: false)
                 if lastChord != nil {
                     chord = Chord.voiceLead(lastChord!, chord2: chord)
                 }

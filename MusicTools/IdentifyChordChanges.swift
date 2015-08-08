@@ -71,7 +71,7 @@ class IdentifyChordChanges: UIViewController {
             for offset in scale.offsets {
                 var chType: Int = Scale.chordTypeAtPosition(offset)
                 println("offset \(offset) type \(chType)")
-                let chord:Chord = Chord(root: base + offset, type: chType)
+                let chord:Chord = Chord(root: base + offset, type: chType, seventh:false)
                 voice1.add(chord)
                 //voice2.addSound(Note(note: base + offset - 12, duration : NOTE_QTR))
             }
@@ -98,7 +98,7 @@ class IdentifyChordChanges: UIViewController {
                 var root = base + tonic + chordIndex
                 var chordType = Scale.chordTypeAtPosition(chordIndex)
                 //println("base \(base) index \(chordIndex) type \(chordType)")
-                var chord : Chord = Chord(root: root, type: chordType)
+                var chord : Chord = Chord(root: root, type: chordType, seventh:false)
                 if self.switchInversions.on {
                     if lastChord != nil {
                         chord = Chord.voiceLead(lastChord!, chord2: chord)

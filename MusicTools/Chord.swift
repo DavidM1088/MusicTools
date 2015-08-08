@@ -29,17 +29,20 @@ class Chord  : StaffObject {
         sortNotes()
     }
     
-    init(root:Int, type:Int) {
+    init(root:Int, type:Int, seventh:Bool) {
         super.init()
         var noteValues : [Int] = []
         if type == CHORD_MAJOR {
             noteValues = [root, root+4, root+7]
+            if (seventh) {noteValues.append(root + 11)}
         }
         if type == CHORD_MINOR {
             noteValues = [root, root+3, root+7]
+            if (seventh) {noteValues.append(root + 10)}
         }
         if type == CHORD_DIMINISHED {
             noteValues = [root, root+3, root+6]
+            if (seventh) {noteValues.append(root + 10)}
         }
         for noteValue in noteValues {
             notes.append(Note(noteValue : noteValue))

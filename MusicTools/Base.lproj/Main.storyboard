@@ -226,7 +226,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wV3-2T-4WP">
-                                <rect key="frame" x="16" y="153" width="104" height="30"/>
+                                <rect key="frame" x="16" y="211" width="104" height="30"/>
                                 <state key="normal" title="Next Chord">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -235,12 +235,12 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xQI-y4-fcN" customClass="StaffView" customModule="MusicTools" customModuleProvider="target">
-                                <rect key="frame" x="16" y="191" width="387" height="192"/>
+                                <rect key="frame" x="16" y="249" width="278" height="192"/>
                                 <color key="backgroundColor" red="0.039215686270000001" green="0.37254901959999998" blue="0.99215686270000003" alpha="0.12" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xfk-bm-9Bj">
-                                <rect key="frame" x="16" y="416" width="142" height="30"/>
+                                <rect key="frame" x="16" y="439" width="142" height="30"/>
                                 <state key="normal" title="Play Chords in Scale">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -248,21 +248,6 @@
                                     <action selector="scaleClicked:" destination="sCe-3M-O7j" eventType="touchUpInside" id="eaO-AJ-UWb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIe-dV-0Ar">
-                                <rect key="frame" x="16" y="361" width="103" height="219"/>
-                                <state key="normal" title="Play Cadences">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="cadencesClicked:" destination="sCe-3M-O7j" eventType="touchUpInside" id="pbk-1t-6km"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3z-tw-vgi">
-                                <rect key="frame" x="239" y="157" width="387" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.50196078431372548" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Show Root Position" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjc-0c-Xqu">
                                 <rect key="frame" x="16" y="79" width="152" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -270,16 +255,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Change Keys" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tiT-MT-gH8">
-                                <rect key="frame" x="16" y="118" width="103" height="21"/>
+                                <rect key="frame" x="16" y="163" width="103" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7a2-fn-MaH">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7a2-fn-MaH">
                                 <rect key="frame" x="185" y="74" width="51" height="31"/>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gjy-UU-wGB">
-                                <rect key="frame" x="143" y="153" width="89" height="30"/>
+                                <rect key="frame" x="132" y="211" width="89" height="30"/>
                                 <state key="normal" title="Show Chord">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -288,13 +273,38 @@
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lJo-Lr-70z">
-                                <rect key="frame" x="185" y="118" width="51" height="31"/>
+                                <rect key="frame" x="185" y="158" width="51" height="31"/>
                             </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1ij-ZF-5BU">
+                                <rect key="frame" x="185" y="116" width="51" height="31"/>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIe-dV-0Ar">
+                                <rect key="frame" x="16" y="369" width="103" height="219"/>
+                                <state key="normal" title="Play Cadences">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cadencesClicked:" destination="sCe-3M-O7j" eventType="touchUpInside" id="pbk-1t-6km"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Four Note Chords" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ra6-gq-YDE">
+                                <rect key="frame" x="16" y="121" width="138" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3z-tw-vgi">
+                                <rect key="frame" x="230" y="215" width="387" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.50196078431372548" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="xWj-am-B6A"/>
                     <connections>
+                        <outlet property="fourNoteChords" destination="1ij-ZF-5BU" id="mF5-SM-c1H"/>
                         <outlet property="multipleKeys" destination="lJo-Lr-70z" id="TLA-f6-vgF"/>
                         <outlet property="result" destination="m3z-tw-vgi" id="npq-Vl-45i"/>
                         <outlet property="showRootPos" destination="7a2-fn-MaH" id="Bb9-gw-PCU"/>
@@ -306,11 +316,11 @@
             </objects>
             <point key="canvasLocation" x="1553" y="1089"/>
         </scene>
-        <!--Cadences-->
+        <!--Chords-->
         <scene sceneID="W25-VG-ev6">
             <objects>
                 <navigationController id="w0e-Ff-fJT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Cadences" image="second" id="ALm-LJ-FqJ"/>
+                    <tabBarItem key="tabBarItem" title="Chords" image="icon_chord.png" id="ALm-LJ-FqJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SBE-p5-wrP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -529,7 +539,7 @@
         <scene sceneID="lg4-wO-k9A">
             <objects>
                 <navigationController title="Test __ Title" automaticallyAdjustsScrollViewInsets="NO" id="0ap-wA-6LX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Progressions" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Progressions" image="icon_progressions.png" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ptN-nh-PIp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -548,7 +558,8 @@
         <scene sceneID="MTy-jn-5AM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XXx-8J-Hoq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Intervals" image="second" id="cPa-gy-q4n"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <tabBarItem key="tabBarItem" title="Intervals" image="icon_interval.png" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AYi-Mw-t8h">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -565,9 +576,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
+        <image name="icon_chord.png" width="30" height="30"/>
+        <image name="icon_interval.png" width="30" height="30"/>
+        <image name="icon_progressions.png" width="30" height="30"/>
         <image name="play_sound.png" width="225" height="225"/>
-        <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="XOs-Fz-Kcf"/>

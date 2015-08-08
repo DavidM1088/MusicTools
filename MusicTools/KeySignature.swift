@@ -3,11 +3,11 @@ let KEY_MAJOR = 0
 let KEY_MINOR = 1
 
 class KeySignature {
-    public var sharps : Int = 0
+    private var sharps : Int = 0
     private var flats : Int = 0
     private var root : String = ""
     private var type : Int = 0
-    public var rootNote : Int = 0
+    private var rootNote : Int = 0
     
     init(root : String, type : Int, sharps : Int, flats : Int, rootNote : Int) {
         self.root = root
@@ -20,6 +20,13 @@ class KeySignature {
     func getName() -> String {
         var typeName = type == KEY_MAJOR ? "Major" : "Minor"
         return "\(self.root) \(typeName)"
+    }
+    
+    func getSharpCount() -> Int {
+        return self.sharps
+    }
+    func getRootNote() -> Int {
+        return self.rootNote
     }
     
     //returns how this note is presented on the staff in this key
