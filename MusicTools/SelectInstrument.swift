@@ -7,7 +7,7 @@ class SelectInstrument: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("instr settings loaded")
+        print("instr settings loaded")
     }
     
     func getStaff() -> Staff {
@@ -21,10 +21,10 @@ class SelectInstrument: UITableViewController {
     
     @IBAction func btnPlayClicked(sender: UIButton) {
         let id :String = sender.titleForState(UIControlState.Selected)!
-        let midiId :Int = id.toInt()!
+        let midiId :Int = Int(id)!
         let inst1 = Instrument(midiPresetId: midiId)
         let voice1 : Voice = Voice(instr: inst1, clef: CLEF_AUTO)
-        var staff = getStaff()
+        let staff = getStaff()
         staff.addVoice(voice1)
         voice1.add(Note(noteValue: 64))
         voice1.add(Rest())
@@ -37,12 +37,12 @@ class SelectInstrument: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("instrument") as! UITableViewCell
+        let cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("instrument") as! UITableViewCell
         cell.textLabel?.text = self.instruments.instruments[indexPath.row].name
 
         //store the midi id in the button title so we can retrieve the midi id on button push
-        var btnPlay : UIButton = cell.viewWithTag(10) as! UIButton!
-        var midiId = "\(self.instruments.instruments[indexPath.row].id)"
+        let btnPlay : UIButton = cell.viewWithTag(10) as! UIButton!
+        let midiId = "\(self.instruments.instruments[indexPath.row].id)"
         btnPlay.setTitle(midiId, forState: UIControlState.Selected)
 
         if indexPath.row == self.instruments.selected {
@@ -62,13 +62,13 @@ class SelectInstrument: UITableViewController {
                 //previous selected row is scrolled out of view?
             }
             else {
-                var lastCell : UITableViewCell = self.tableView.cellForRowAtIndexPath(self.lastSelectedPath!)!
+                let lastCell : UITableViewCell = self.tableView.cellForRowAtIndexPath(self.lastSelectedPath!)!
                 lastCell.accessoryType = .None
             }
         }
         self.lastSelectedPath = indexPath
         self.instruments.selected = indexPath.row
-        var cell : UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPath)!
+        let cell : UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPath)!
         cell.accessoryType = .Checkmark
         //cell.n
     }

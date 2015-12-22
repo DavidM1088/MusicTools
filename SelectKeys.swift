@@ -7,7 +7,7 @@ class SelectKeys: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("key settings loaded")
+        print("key settings loaded")
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -15,7 +15,7 @@ class SelectKeys: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("key") as! UITableViewCell
+        let cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("key") as! UITableViewCell
         cell.textLabel?.text = self.keys.keys[indexPath.row].getName()
         
         if indexPath.row == self.keys.selected {
@@ -35,13 +35,13 @@ class SelectKeys: UITableViewController {
                 //previous selected row is scrolled out of view?
             }
             else {
-                var lastCell : UITableViewCell = self.tableView.cellForRowAtIndexPath(self.lastSelectedPath!)!
+                let lastCell : UITableViewCell = self.tableView.cellForRowAtIndexPath(self.lastSelectedPath!)!
                 lastCell.accessoryType = .None
             }
         }
         self.lastSelectedPath = indexPath
         self.keys.selected = indexPath.row
-        var cell : UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPath)!
+        let cell : UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPath)!
         cell.accessoryType = .Checkmark
     }
 }

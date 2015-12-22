@@ -13,10 +13,10 @@ class GraphView : UIView {
             return
         }
         let margin : CGFloat = 10.0
-        var width = rect.size.width - 2*margin
-        var height = rect.size.height
-        var cHeight = height / 3.5
-        var ctx = UIGraphicsGetCurrentContext()
+        let width = rect.size.width - 2*margin
+        let height = rect.size.height
+        let cHeight = height / 3.5
+        let ctx = UIGraphicsGetCurrentContext()
         
         //axes
         let centerLine : CGFloat = rect.height / 2.0
@@ -45,8 +45,8 @@ class GraphView : UIView {
                 CGContextSetStrokeColor(ctx, colorPurple)
             }
             for (var i = 0; i <= Int(width); i += 1 ) {
-                var x : CGFloat = (CGFloat(i) * 2.0 * CGFloat(M_PI) * frequency) / CGFloat(width)
-                var yVal = height/2 - (sin(x)  * cHeight)
+                let x : CGFloat = (CGFloat(i) * 2.0 * CGFloat(M_PI) * frequency) / CGFloat(width)
+                let yVal = height/2 - (sin(x)  * cHeight)
                 let xVal = CGFloat(i)
                 if abs(yVal - centerLine) < 3 {
                     if allZero[xVal] == nil {

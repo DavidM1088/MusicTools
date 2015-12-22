@@ -19,7 +19,7 @@ class IdentifyChordChanges: UIViewController {
 
 
     func settings() {
-        println("go to settings")
+        print("go to settings")
         performSegueWithIdentifier("segueToSettings", sender: nil)
     }
 
@@ -40,7 +40,7 @@ class IdentifyChordChanges: UIViewController {
     
     func setTempo() {
         if runningStaff != nil {
-            var tempo = self.sliderTempo.maximumValue - self.sliderTempo.value
+            let tempo = self.sliderTempo.maximumValue - self.sliderTempo.value
             runningStaff!.setTempo(Double(tempo))
         }
     }
@@ -58,8 +58,8 @@ class IdentifyChordChanges: UIViewController {
     }
     
     @IBAction func btnPlayClicked(sender: AnyObject) {
-        var staff = self.getStaff()
-        var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
+        let staff = self.getStaff()
+        let inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
         let voice1 : Voice = Voice(instr: inst1, clef: CLEF_AUTO)
         staff.addVoice(voice1)
         //let voice2 : Voice = Voice(instr: inst1)
@@ -69,8 +69,8 @@ class IdentifyChordChanges: UIViewController {
         var base = 52
         for oct in 0...2 {
             for offset in scale.offsets {
-                var chType: Int = Scale.chordTypeAtPosition(offset)
-                println("offset \(offset) type \(chType)")
+                let chType: Int = Scale.chordTypeAtPosition(offset)
+                print("offset \(offset) type \(chType)")
                 let chord:Chord = Chord(root: base + offset, type: chType, seventh:false)
                 voice1.add(chord)
                 //voice2.addSound(Note(note: base + offset - 12, duration : NOTE_QTR))
@@ -83,9 +83,9 @@ class IdentifyChordChanges: UIViewController {
     func chordProgression(progression : [Int]) {
         //Chord.unitTest()
         //return
-        var staff = self.getStaff()
-        var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
-        var inst2 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
+        let staff = self.getStaff()
+        let inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
+        let inst2 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
         let voice1 : Voice = Voice(instr: inst1, clef: CLEF_AUTO)
         let voice2 : Voice = Voice(instr: inst2, clef: CLEF_AUTO)
         staff.addVoice(voice1)
@@ -95,8 +95,8 @@ class IdentifyChordChanges: UIViewController {
         for tonic in 0...5 {
             var lastChord : Chord?
             for chordIndex in progression {
-                var root = base + tonic + chordIndex
-                var chordType = Scale.chordTypeAtPosition(chordIndex)
+                let root = base + tonic + chordIndex
+                let chordType = Scale.chordTypeAtPosition(chordIndex)
                 //println("base \(base) index \(chordIndex) type \(chordType)")
                 var chord : Chord = Chord(root: root, type: chordType, seventh:false)
                 if self.switchInversions.on {

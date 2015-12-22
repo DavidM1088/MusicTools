@@ -74,8 +74,8 @@ class Note : Duration {
     }
     
     class func noteDescription(note : Note, withOctave : Bool) -> String {
-        var noteValue = note.noteValue % 12
-        var octave = (note.noteValue / 12) - 1 //by convention middle C is octave 4
+        let noteValue = note.noteValue % 12
+        let octave = (note.noteValue / 12) - 1 //by convention middle C is octave 4
         var noteName=""
         switch (noteValue) {
         case 0: noteName = "C"

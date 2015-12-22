@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     class func userMessage(message : String) {
-        var alertView = UIAlertView();
+        let alertView = UIAlertView();
         alertView.addButtonWithTitle("Ok");
         alertView.title = "";
         alertView.message = message;

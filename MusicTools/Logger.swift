@@ -6,7 +6,7 @@ class Logger {
         
     //}
     class func log(message : String) {
-        println("----->  \(message)")
+        print("----->  \(message)")
         
     }
 }

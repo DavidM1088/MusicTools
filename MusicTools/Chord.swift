@@ -12,7 +12,7 @@ class Chord  : StaffObject {
     
     func sortNotes() {
         //ensure the notes are ordered lowest to highest
-        let sortedNotes = sorted(notes, { (s1: Note, s2: Note) -> Bool in
+        let sortedNotes = notes.sort({ (s1: Note, s2: Note) -> Bool in
             return s1.noteValue < s2.noteValue
         })
         self.notes = []
@@ -61,7 +61,7 @@ class Chord  : StaffObject {
     
     //return the best inversion of chord 2 using voice leading to move from chord1 to chord 2
     class func voiceLead(chord1 : Chord, chord2 : Chord) -> Chord {
-        println("voice_lead \(chord1.toString()) to: \(chord2.toString())")
+        print("voice_lead \(chord1.toString()) to: \(chord2.toString())")
         var candidates :[Chord] = []
         var candidateDiffs :[Int] = []
         var ctr = 0
@@ -70,7 +70,7 @@ class Chord  : StaffObject {
         while ctr < 4 * chord1.notes.count {
             candidates.append(candidate)
             candidateDiffs.append(Chord.chordDifference(candidate, chord2: chord1))
-            println("cand \(candidate.toString()) diff: \(candidateDiffs[ctr])")
+            print("cand \(candidate.toString()) diff: \(candidateDiffs[ctr])")
             candidate = Chord.invert(candidate)
             ctr++
         }
@@ -105,12 +105,12 @@ class Chord  : StaffObject {
             if (noteValue < lo || noteValue > hi) {
                 continue
             }
-            if (contains(notes, noteValue)) {
+            if (notes.contains(noteValue)) {
                 continue
             }
             notes.append(noteValue)
         }
-        var chord = Chord(noteValues: notes)
+        let chord = Chord(noteValues: notes)
         return chord
     }
     
@@ -174,14 +174,14 @@ class Chord  : StaffObject {
     }
     
     class func unitTest() {
-        var c1 = Chord(noteValues : [60, 64, 67]) // C E G
+        let c1 = Chord(noteValues : [60, 64, 67]) // C E G
         var c2 = Chord.invert(c1)
         //println("\(c1.toString()) transposed to \(c2.toString())")
         
-        var c3 = Chord(noteValues : [65, 69, 72]) // F Major
-        println("VL ----> \(c1.toString()) to \(c3.toString()) ")
-        var c4 = Chord.voiceLead(c1, chord2: c3)
-        println("result ----> \(c4.toString())")
+        let c3 = Chord(noteValues : [65, 69, 72]) // F Major
+        print("VL ----> \(c1.toString()) to \(c3.toString()) ")
+        let c4 = Chord.voiceLead(c1, chord2: c3)
+        print("result ----> \(c4.toString())")
         
     }
     

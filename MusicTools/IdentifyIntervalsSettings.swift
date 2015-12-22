@@ -5,7 +5,7 @@ class IdentifyIntervalsSettings: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("intervals settings loaded")
+        print("intervals settings loaded")
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -21,7 +21,7 @@ class IdentifyIntervalsSettings: UITableViewController {
             case 3: cellType = "keysSettingsRow"
             default : cellType = nil
         }
-        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier(cellType!) as! UITableViewCell
+        let cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier(cellType!) as! UITableViewCell
         cell.textLabel?.text = self.items[indexPath.row]
         return cell
         

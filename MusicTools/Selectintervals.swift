@@ -6,7 +6,7 @@ class SelectIntervals: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("interval settings loaded")
+        print("interval settings loaded")
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -24,12 +24,12 @@ class SelectIntervals: UITableViewController {
     
     @IBAction func btnPlayClciked(sender: UIButton) {
         let id :String = sender.titleForState(UIControlState.Selected)!
-        let intervalRange :Int = id.toInt()!
-        var instr = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
+        let intervalRange :Int = Int(id)!
+        let instr = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
         let voice1 : Voice = Voice(instr: instr, clef: CLEF_AUTO)
-        var staff = getStaff()
+        let staff = getStaff()
         staff.addVoice(voice1)
-        var root = 64
+        let root = 64
         voice1.add(Note(noteValue: root))
         voice1.add(Note(noteValue: root + intervalRange))
         voice1.add(Rest())
@@ -37,7 +37,7 @@ class SelectIntervals: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cellTypeId") as! UITableViewCell
+        let cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cellTypeId") as! UITableViewCell
         cell.textLabel?.text = self.selectedIntervals.intervals[indexPath.row].name
         if self.selectedIntervals.selected[indexPath.row] {
             cell.accessoryType = .Checkmark
@@ -45,14 +45,14 @@ class SelectIntervals: UITableViewController {
         else {
             cell.accessoryType = .None
         }
-        var btnPlay : UIButton = cell.viewWithTag(10) as! UIButton!
-        var intervalRange = "\(self.selectedIntervals.intervals[indexPath.row].interval)"
+        let btnPlay : UIButton = cell.viewWithTag(10) as! UIButton!
+        let intervalRange = "\(self.selectedIntervals.intervals[indexPath.row].interval)"
         btnPlay.setTitle(intervalRange, forState: UIControlState.Selected)
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var cell : UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPath)!
+        let cell : UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPath)!
         if cell.accessoryType == .None {
             cell.accessoryType = .Checkmark
             self.selectedIntervals.selected[indexPath.row] = true

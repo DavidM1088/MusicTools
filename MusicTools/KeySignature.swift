@@ -18,7 +18,7 @@ class KeySignature {
     }
     
     func getName() -> String {
-        var typeName = type == KEY_MAJOR ? "Major" : "Minor"
+        let typeName = type == KEY_MAJOR ? "Major" : "Minor"
         return "\(self.root) \(typeName)"
     }
     
@@ -36,7 +36,7 @@ class KeySignature {
         //let cMajorPres = Note.cMajorNotePresentation(noteNormalized, useFlat: true)
         let noteOffset = noteNormalized - rootNote
         var noteName = "C"
-        var accidental = ACCIDENTAL_NONE // cMajorPres.accidental
+        let accidental = ACCIDENTAL_NONE // cMajorPres.accidental
         switch (noteNormalized) {
         case 0: noteName = "C"
         case 1: noteName = sharpMode == ACCIDENTAL_SHARP ? "C" : "D"

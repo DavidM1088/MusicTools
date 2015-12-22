@@ -16,7 +16,7 @@ class IdentifyCadences: UIViewController {
     @IBOutlet weak var showRootPos: UISwitch!
     @IBOutlet weak var multipleKeys: UISwitch!
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         lastChordDescription = ""
         super.init(coder: aDecoder)
     }
@@ -28,7 +28,7 @@ class IdentifyCadences: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .Plain, target: self, action: Selector("settings"))
-        println("cadences loaded Sunday..")
+        print("cadences loaded Sunday..")
         let time = UInt32(NSDate().timeIntervalSinceReferenceDate)
         srand(time)
     }
@@ -55,13 +55,13 @@ class IdentifyCadences: UIViewController {
 
     @IBAction func nextClicked(sender: AnyObject) {
         result.text = ""
-        var staff = self.getStaff()
-        var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
+        let staff = self.getStaff()
+        let inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
         let voiceTreble : Voice = Voice(instr: inst1, clef: CLEF_TREBLE)
         let voiceBass : Voice = Voice(instr: inst1, clef: CLEF_BASS)
         staff.addVoice(voiceTreble)
         staff.addVoice(voiceBass)
-        var notesInChord = 3
+        let notesInChord = 3
         
         //figure out the notes we can use at this root offset in the scale
         let scaleOffsets = Scale(type: SCALE_MAJOR).offsets
@@ -81,15 +81,15 @@ class IdentifyCadences: UIViewController {
         else {
             key = SelectedKeys.getSelectedKey()
         }
-        var base = key.getRootNote()
+        let base = key.getRootNote()
         
         let tonicChord:Chord = Chord(root: base, type: CHORD_MAJOR, seventh: fourNoteChords.on)
         voiceTreble.add(tonicChord)
         voiceBass.add(Note(noteValue: base - 1 * OCTAVE_OFFSET))
         
         // pick a random offset in the scale as the chord root
-        var scaleNote = scaleOffsets[Int(rand()) % scaleOffsets.count]
-        var chType: Int = Scale.chordTypeAtPosition(scaleNote)
+        let scaleNote = scaleOffsets[Int(rand()) % scaleOffsets.count]
+        let chType: Int = Scale.chordTypeAtPosition(scaleNote)
         var trebleChord:Chord = Chord(root: base + scaleNote, type: chType, seventh: fourNoteChords.on)
 
         if showRootPos.on {
@@ -103,7 +103,7 @@ class IdentifyCadences: UIViewController {
         
         //remove a non root note from the treble chord to add it to the base chord
         let removeIndex = 1 + Int(rand()) % (trebleChord.notes.count - 1)
-        println("----------> remove index r:\(rand()) \(removeIndex)")
+        print("----------> remove index r:\(rand()) \(removeIndex)")
         let removedFromTreble = trebleChord.notes[removeIndex].noteValue
         trebleChord = Chord.removeNote(trebleChord, noteNum: removeIndex)
 
@@ -137,8 +137,8 @@ class IdentifyCadences: UIViewController {
     }
     
     @IBAction func nextClicked_test(sender: AnyObject) {
-        var staff = self.getStaff()
-        var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
+        let staff = self.getStaff()
+        let inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
         let voice1 : Voice = Voice(instr: inst1, clef: CLEF_TREBLE)
         let voice2 : Voice = Voice(instr: inst1, clef: CLEF_BASS)
         staff.addVoice(voice1)
@@ -157,8 +157,8 @@ class IdentifyCadences: UIViewController {
     }
 
     @IBAction func scaleClicked(sender: AnyObject) {
-        var staff = self.getStaff()
-        var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
+        let staff = self.getStaff()
+        let inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
         let voice1 : Voice = Voice(instr: inst1, clef: CLEF_AUTO)
         staff.addVoice(voice1)
         //let voice2 : Voice = Voice(instr: inst1)
@@ -168,8 +168,8 @@ class IdentifyCadences: UIViewController {
         var base = 60
         for oct in 0...0 {
             for offset in scale.offsets {
-                var chType: Int = Scale.chordTypeAtPosition(offset)
-                println("offset \(offset) type \(chType)")
+                let chType: Int = Scale.chordTypeAtPosition(offset)
+                print("offset \(offset) type \(chType)")
                 let chord:Chord = Chord(root: base + offset, type: chType, seventh: false)
                 voice1.add(chord)
                 //voice2.addSound(Note(note: base + offset - 12, duration : NOTE_QTR))
@@ -182,9 +182,9 @@ class IdentifyCadences: UIViewController {
     }
     
     @IBAction func cadencesClicked(sender: AnyObject) {
-        var staff = self.getStaff()
-        var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
-        var inst2 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
+        let staff = self.getStaff()
+        let inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
+        let inst2 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
         let voice1 : Voice = Voice(instr: inst1, clef: CLEF_AUTO)
         let voice2 : Voice = Voice(instr: inst2, clef: CLEF_AUTO)
         staff.addVoice(voice1)
@@ -195,8 +195,8 @@ class IdentifyCadences: UIViewController {
         for tonic in 0...0 {
             var lastChord : Chord?
             for chordIndex in progression {
-                var root = base + tonic + chordIndex
-                var chordType = Scale.chordTypeAtPosition(chordIndex)
+                let root = base + tonic + chordIndex
+                let chordType = Scale.chordTypeAtPosition(chordIndex)
                 //println("base \(base) index \(chordIndex) type \(chordType)")
                 var chord : Chord = Chord(root: root, type: chordType, seventh: false)
                 if lastChord != nil {

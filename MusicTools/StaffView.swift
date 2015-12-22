@@ -10,7 +10,7 @@ class StaffView : UIView {
         super.init(frame: frame)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -90,7 +90,7 @@ class StaffView : UIView {
     private func renderObject(ctx : CGContext, object : StaffObject, key : KeySignature, xPos : CGFloat, middleCPos : CGFloat, lineRange : (Int, Int)) {
         var accidental = ACCIDENTAL_NONE
         var presentation : NotePresentation?
-        var sharpPresentation : Int = key.getSharpCount() > 0 ? ACCIDENTAL_SHARP : ACCIDENTAL_FLAT
+        let sharpPresentation : Int = key.getSharpCount() > 0 ? ACCIDENTAL_SHARP : ACCIDENTAL_FLAT
         if object is Note {
             let note : Note = object as! Note
             presentation = key.notePresentation(note.noteValue, sharpMode : sharpPresentation)

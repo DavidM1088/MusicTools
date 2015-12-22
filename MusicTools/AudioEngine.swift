@@ -23,9 +23,12 @@ class AudioEngine : NSObject {
         engine.attachNode(sampler)
         engine.connect(sampler, to: mixer, format: nil)
         var error:NSError?
-        if !sampler.loadSoundBankInstrumentAtURL(soundbank, program: UInt8(midiInstrument),
-            bankMSB: melodicBank, bankLSB: 0, error: &error) {
-                println("could not load soundbank for instrument \(midiInstrument)")
+        do {
+            try sampler.loadSoundBankInstrumentAtURL(soundbank, program: UInt8(midiInstrument),
+                        bankMSB: melodicBank, bankLSB: 0)
+        } catch let error1 as NSError {
+            error = error1
+                print("could not load soundbank for instrument \(midiInstrument)")
         }
         samplerCount += 1
         Logger.log("audio samplers - attached count:\(self.samplerCount)")
@@ -61,10 +64,13 @@ class AudioEngine : NSObject {
         //println("-----> soundbank \(soundbank)")
             
         var error:NSError?
-        if !engine.startAndReturnError(&error) {
-            println("error couldn't start engine")
+        do {
+            try engine.startAndReturnError()
+        } catch var error1 as NSError {
+            error = error1
+            print("error couldn't start engine")
             if let e = error {
-                println("error \(e.localizedDescription)")
+                print("error \(e.localizedDescription)")
             }
         }
     }
@@ -82,7 +88,7 @@ class AudioEngine : NSObject {
         sleep(3)
         //sampler.startNote(76)
         //sleep(4)
-        println("-----done ----")
+        print("-----done ----")
     }
 
 }

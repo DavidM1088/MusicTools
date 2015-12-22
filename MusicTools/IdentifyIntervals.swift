@@ -25,7 +25,7 @@ class IdentifyIntervals: UIViewController {
     
     @IBOutlet weak var viewGraph: GraphView!
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -40,7 +40,7 @@ class IdentifyIntervals: UIViewController {
         stepperOctave.stepValue = 1
         self.btnRepeatClicked.enabled = false
         self.lblIntervalAnswer.hidden = true
-        println("intervals loaded Sunday..")
+        print("intervals loaded Sunday..")
     }
     
     override func didReceiveMemoryWarning() {
@@ -74,14 +74,14 @@ class IdentifyIntervals: UIViewController {
     
     func setTempo() {
         if runningStaff != nil {
-            var tempo = self.sliderSpeed.maximumValue - self.sliderSpeed.value
+            let tempo = self.sliderSpeed.maximumValue - self.sliderSpeed.value
             runningStaff!.setTempo(Double(tempo))
         }
     }
     
     func playInterval(note1 : Note, note2 :Note) {
-        var staff = self.getStaff()
-        var inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
+        let staff = self.getStaff()
+        let inst1 = Instrument(midiPresetId: SelectedInstruments.getSelectedInstrument())
         let voice : Voice = Voice(instr: inst1, clef: CLEF_AUTO)
         staff.addVoice(voice)
         let tempo = self.sliderSpeed.maximumValue - self.sliderSpeed.value
@@ -163,8 +163,8 @@ class IdentifyIntervals: UIViewController {
             }
         }
         
-        var note1 = Note(noteValue: tonic)
-        var note2 = Note(noteValue: tonic + interval)
+        let note1 = Note(noteValue: tonic)
+        let note2 = Note(noteValue: tonic + interval)
         self.playInterval(Note(note: note1), note2: Note(note: note2))
         
         self.lblIntervalAnswer.text = self.selectedIntervals.intervals[abs(interval)].name
